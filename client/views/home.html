@@ -1,0 +1,16 @@
+<template name="home">
+  <div class="container">
+    <div class="jumbotron">
+      <h2>Hello Team</h2>
+      <h1>Welcome to DebtFree</h1>
+      <h2>Start by logging in with Facebook</h2>
+      {{>loginButtons}}
+      {{ #if currentUser}}
+        <button class="btn btn-default" type="button">Try Random</button>
+        {{#if myAppVariable}}
+            <h3>{{myAppVariable}}</h3>
+        {{/if}}
+       {{/if}} 
+    </div>
+  </div>
+</template>
