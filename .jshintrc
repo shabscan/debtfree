@@ -1,0 +1,20 @@
+{
+  "browser": true,
+  "curly": true,
+  "eqeqeq": true,
+  "forin": true,
+  "indent": 2,
+  "latedef": true,
+  "newcap": true,
+  "noarg": true,
+  "strict": false,
+  "trailing": true,
+  "undef": true,
+  "unused": "vars",
+  "strict": false,
+  "predef": [
+    "Meteor",
+    "Mongo",
+	"Template"
+  ]
+}
