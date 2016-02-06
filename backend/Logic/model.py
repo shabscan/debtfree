@@ -1,5 +1,3 @@
-from collections import namedtuple
-import pandas as pd
 import numpy as np
 from backend.Logic.fakes import assets
 
