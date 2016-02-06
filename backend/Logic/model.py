@@ -6,12 +6,21 @@ Debt = namedtuple('Debt', ['title', 'amount', 'interest'])
 
 def interest_model(values, rates, months):
     """
+    Compounding Interest
     V(t) = Vo (1 + r) ^ t
 
     :param values: Array of values
-    :param rates: Monthly Interest Rates
+    :param rates: Monthly Interest Rates in Decimal (10% => 0.10/12)
     :param months: Number of compounding months
     :return: Progression of Balance
+
+    >>> interest_model(200000, 0.10/12, months = 0)
+    200000.0
+    #TODO fix decimal place
+
+    '>>> interest_model(12000, 0.10/12, months = 14)
+    11921.52 (This calculation is for mortage)
+
     """
     return values * (1 + rates) ** months
 
@@ -19,6 +28,7 @@ def interest_model(values, rates, months):
 def interest_rate_dx(values, rates, month):
     """
     V(t) = ( Vo ( 1 + r ) ^ t ) * ( log( r + 1 ) )
+    #TODO Verify the derivative on wolfram
     """
     return (values * (rates + 1) ** month) * (np.log(rates + 1))
 

@@ -10,7 +10,7 @@ def index():
     return {'message': 'Hello Hacks'}
 
 
-@app.route('/debts')
+@app.route('/debts', methods=['POST'])
 @json
 def optimise_allocations():
     pass
