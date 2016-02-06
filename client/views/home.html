@@ -1,10 +1,12 @@
 <template name="home">
+<!--
+<div class="col-xs-12">
   <div class="container">
     <div class="jumbotron">
       <h2>Hello Team</h2>
       <h1>Welcome to DebtFree</h1>
       <h2>Start by logging in with Facebook</h2>
-      {{>loginButtons}}
+      {{> loginButtons}}
       {{ #if currentUser}}
         <button class="btn btn-default" type="button">Try Random</button>
         {{#if myAppVariable}}
@@ -13,4 +15,20 @@
        {{/if}} 
     </div>
   </div>
+  </div>!-->
+  {{> theme}}
+</template>
+
+
+
+<template name="theme">
+<div class="container" style="text-align:center;padding-top:200px;">
+<div class="row">
+<div class="col-md-6 col-md-offset-3">
+  <h1 class="fancy">Hello!</h1>
+  <p style="font-size:3em">DebtFree is a super cool app to calculate debt and figure out the best way to pay off your debts.</p>
+</div>
+</div>
+</div>
+
 </template>
