@@ -23,5 +23,10 @@ def sum(a, b):
     return a+b
 
 if __name__ == '__main__':
-    import doctest
-    doctest.testmod()
+    import matplotlib.pyplot as graph
+    months = range(0, 24, 1)
+    answers = []
+    for month in months:
+        answers.append(interest_model(2000, 0.1, month))
+    graph.plot(answers)
+    graph.show()
