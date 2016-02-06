@@ -4,7 +4,7 @@ from backend.Logic.fakes import assets, balance_history
 
 app = Flask(__name__)
 temp_message = dict(message='Hello Scotiabank Hacks')
-
+url = 'https://scotiadebt.herokuapp.com/'
 
 @app.route('/')
 @json
