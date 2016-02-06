@@ -19,6 +19,18 @@ def kj_model(pv, comp_periods, period_interest, pay_freq=12):
     np.pmt(rate, months, balance, 0)  # Gives a negative value
 
 
+def weighted_interest_sum_projection(payment=1500):
+    total_debt = 0
+    weighted_interest = []
+
+    for loan in assets:
+        total_debt += loan.amount
+        weighted_interest.append(loan.interest * loan.amount)
+
+    weighted_interest = np.sum(np.array(weighted_interest) / total_debt)
+    return weighted_interest
+
+
 def interest_rate_dx(values, rates, month):
     # V(t) = ( Vo ( 1 + r ) ^ t ) * ( log( r + 1 ) )
     return (values * (rates + 1) ** month) * (np.log(rates + 1))
@@ -152,3 +164,6 @@ def calc_payment(balance, months, rate):
 
     alter_calc = np.pmt(rate, months, balance, 0)  # Gives a negative value
     return format_money(payment, 2)
+
+if __name__ == '__main__':
+    weighted_interest_sum_projection()
