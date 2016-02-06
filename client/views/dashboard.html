@@ -1,0 +1,83 @@
+<template name='dashboard'>
+	<script src="../lib/Chart.js"></script>
+
+	<a href='#' onclick="openNav()" class='hamburger-button'></a>
+<nav class='navigation-bar'>
+	<ul class='nav-list'>
+		<li class='nav-item'><a href='#' class='nav-link'>Impact Calculator</a></li>
+		<li class='nav-item'><a href='#' class='nav-link'>Achievements</a></li>
+		<li class='nav-item'><a href='#' class='nav-link current'>Dashboards</a></li>
+		<li class='nav-item'><a href='#' class='nav-link'>Track It</a></li>
+		<li class='nav-item'><a href='#' class='nav-link'>Debt Tips</a></li>
+		<li class='nav-item'><a href='#' class='nav-link'>Financial Planner</a></li>
+		<li class='nav-item'><a href='#' class='nav-link'>Budgetting Tool</a></li>
+	</ul>
+</nav>
+
+	<!-- Structure required for Swiper.js -->
+	<div class='swiper-container'>
+		<div class='swiper-wrapper'>
+			<div id='first-screen' class='swiper-slide'>{{>leftScreen }}</div>
+			<div id='second-screen' class='swiper-slide'>{{>mainScreen }}</div>
+			<div id='third-screen' class='swiper-slide'>{{>rightScreen }}</div>
+		</div> <!-- class='swiper-wrapper' -->
+	<div class='swiper-pagination'></div>
+	</div> <!-- class='swiper-container' -->
+
+	<script>
+		var swiperElem = new Swiper('.swiper-container', {
+			initialSlide: 1, // 0-indexed
+			direction: 'horizontal',
+			pagination: '.swiper-pagination',
+			paginationClickable: true,
+			effect: 'flip' // default is 'slide'
+		})
+	</script>
+
+</template>
+
+
+<template name='leftScreen'>
+<p class='swiper-content'>Here's the first screen.</p>
+</template>
+
+<template name='mainScreen'>
+	<canvas id='chart1' width='400' height='400'></canvas>
+	<script>
+		/* Assuming that data will reach this point in the following form, 
+		   more or less:
+
+		var loans = {
+					loan: { 
+							payments: [], 
+							dates: []
+						  }
+					};
+
+			That is, pre-parsed as x and y data.
+		 */
+
+		var ctx = document.getElementById("chart1").getContext("2d");
+		var data = {
+			labels: ["January", "February", "March"],
+			datasets: [
+				{
+					label: "Student Loan",
+					fillColor: "rgba(220,220,220,0.2)",
+					strokeColor: "rgba(220, 220, 220,1)",
+					pointColor: "rgba(220, 220, 220, 1)",
+					pointStrokeColor: "#fff",
+					pointHighlightFill: "#fff",
+					pointHighlightStroke: "rgba(220, 220, 220, 1)",
+					data: [65, 59, 80, 81, 56, 55, 40]
+				},
+			]
+		}
+		var firstChart = new Chart(ctx).Line(data)
+
+	</script>
+</template>
+
+<template name='rightScreen'>
+<p class='swiper-content'>Here's the third screen.</p>
+</template>
