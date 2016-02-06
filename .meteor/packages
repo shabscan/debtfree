@@ -6,3 +6,4 @@ accounts-ui
 accounts-facebook
 momentjs:moment
 aldeed:autoform
+hammer:hammer

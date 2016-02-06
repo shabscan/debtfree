@@ -1,0 +1,45 @@
+<template name='dashboard'>
+	<script src="../lib/Chart.js"></script>
+
+	<!-- Structure required for Swiper.js -->
+	<div class='swiper-container'>
+		<div class='swiper-wrapper'>
+			<div id='first-screen' class='swiper-slide'>{{>firstScreen }}</div>
+			<div id='second-screen' class='swiper-slide'>{{>secondScreen }}</div>
+			<div id='third-screen' class='swiper-slide'>{{>thirdScreen }}</div>
+		</div> <!-- class='swiper-wrapper' -->
+	<div class='swiper-pagination'></div>
+	</div> <!-- class='swiper-container' -->
+
+	<script>
+		var swiperElem = new Swiper('.swiper-container', {
+			initialSlide: 1, // 0-indexed
+			direction: 'horizontal',
+			pagination: '.swiper-pagination',
+			paginationClickable: true,
+			effect: 'flip' // default is 'slide'
+		})
+	</script>
+
+</template>
+
+
+<template name='firstScreen'>
+<p class='swiper-content'>Here's the first screen.</p>
+</template>
+
+<template name='secondScreen'>
+	<canvas id='chart1' width='400' height='400'></canvas>
+	<script>
+		console.log({{loans}});
+		/*
+		var ctx = document.getElementById("chart1").getContext("2d");
+		var data = { labels: {{loans}}};
+		var firstChart = new Chart(ctx).Line(data, options)
+		*/
+	</script>
+</template>
+
+<template name='thirdScreen'>
+<p class='swiper-content'>Here's the third screen.</p>
+</template>
