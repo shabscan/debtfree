@@ -6,6 +6,7 @@ app = Flask(__name__)
 temp_message = dict(message='Hello Scotiabank Hacks')
 url = 'https://scotiadebt.herokuapp.com/'
 
+
 @app.route('/')
 @json
 def index():
