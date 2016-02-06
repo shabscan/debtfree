@@ -23,13 +23,6 @@ def interest_rate_dx(values, rates):
     return values * rates * np.e ** rates
 
 
-def sum(a, b):
-    """
-    >>> sum(2, 3)
-    5
-    """
-    return a+b
-
 if __name__ == '__main__':
     # Testing
     fake_data_array = [Debt(title='Student Loan', amount=12000, interest=0.02),
