@@ -2,7 +2,12 @@ standard-app-packages
 iron:router
 twbs:bootstrap
 standard-minifiers
-accounts-ui
 accounts-facebook
 momentjs:moment
 aldeed:autoform
+aldeed:simple-schema
+aldeed:collection2
+insecure
+autopublish
+accounts-password
+service-configuration

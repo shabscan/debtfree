@@ -1,27 +1,10 @@
 <template name="home">
-<!--
-<div class="col-xs-12">
-  <div class="container">
-    <div class="jumbotron">
-      <h2>Hello Team</h2>
-      <h1>Welcome to DebtFree</h1>
-      <h2>Start by logging in with Facebook</h2>
-      {{> loginButtons}}
-      {{ #if currentUser}}
-        <button class="btn btn-default" type="button">Try Random</button>
-        {{#if myAppVariable}}
-            <h3>{{myAppVariable}}</h3>
-        {{/if}}
-       {{/if}} 
-    </div>
-  </div>
-  </div>!-->
-  {{> debtTalkSelectDebt}}
+  {{> onboarding}}
 </template>
 
 
 
-<template name="theme">
+<template name="onboarding">
 <div style="background-color:#9BCB65;height:100vh">
 <div class="container" style="text-align:center;padding-top:100px;color:white">
 <div class="row">
@@ -32,24 +15,16 @@
 </div>
 </div>
 </div>
+<div class="col-xs-6">
+<button class="btn btn-styled" style="width:100%" id="loginWithFacebook">Facebook</button>
 </div>
+<div class="col-xs-6">
+<button class="btn btn-styled" style="width:100%" id="loginWithEmail">Email</button>
+</div>
+</div>
+
 
 </template>
 
 
-<template name="debtTalkSelectDebt">
-<div style="background-color:#9BCB65;height:100vh;color:white">
-<div class="container" style="text-align:center">
-<div class="row">
-<div class="col-xs-12">
-<h2 class="fancy">Debt Talk</h2>
-<p style="font-size:1.5em">Tell us about your debt.</p>
 
-
-
-</div>
-</div>
-</div>
-</div>
-
-</template>

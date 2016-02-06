@@ -4,13 +4,13 @@ Router.configure({
 });
 
 Router.route('/', {name: 'home', controller: 'MainController'});
+Router.route('/createAccount');
+Router.route('/debtTalkSelectDebt');
+
 
 MainController = RouteController.extend({
   action: function() {
   	this.render('home', {
-	    data: function () {
-	      return { posts: ['post red', 'post blue'] }
-	    }
   	});
   }
 });
