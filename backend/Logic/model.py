@@ -4,7 +4,14 @@ import numpy as np
 def interest_model(values, rates, months):
     """
     V(t) = Vo e ^ (r * t)
+
+    :param values: Array of values
+    :param rates: Monthly Interest Rates
+    :param months: Number of compounding months
+    :return: Progression of Balance
     """
+
+
     return np.sum(values * np.e ** (rates * months))
 
 
@@ -20,7 +27,7 @@ def sum(a, b):
     >>> sum(2, 3)
     5
     """
-    return a+b
+    return b + a
 
 if __name__ == '__main__':
     import matplotlib.pyplot as graph
