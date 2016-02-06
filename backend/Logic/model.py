@@ -16,11 +16,11 @@ def interest_model(values, rates, months):
     return values * (1 + rates) ** months
 
 
-def interest_rate_dx(values, rates):
+def interest_rate_dx(values, rates, month):
     """
-    V(t) = Vo r e ^ (r * t)
+    V(t) = ( Vo ( 1 + r ) ^ t ) * ( log( r + 1 ) )
     """
-    return values * rates * np.e ** rates
+    return (values * (rates + 1) ** month) * (np.log(rates + 1))
 
 
 if __name__ == '__main__':
