@@ -28,15 +28,24 @@
 <p class='swiper-content'>Here's the first screen.</p>
 </template>
 
-<template name='secondScreen'>
+<template name='mainScreen'>
 	<canvas id='chart1' width='400' height='400'></canvas>
 	<script>
-		console.log({{loans}});
-		/*
+		/* Assuming that data will reach this point in the following form, 
+		   more or less:
+
+		var loans = {
+						loan: { 
+								payments: [], 
+								dates: []
+							  }
+					};
+
+			That is, pre-parsed as x and y data.
+		 */
 		var ctx = document.getElementById("chart1").getContext("2d");
 		var data = { labels: {{loans}}};
 		var firstChart = new Chart(ctx).Line(data, options)
-		*/
 	</script>
 </template>
 
