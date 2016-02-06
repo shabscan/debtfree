@@ -24,7 +24,7 @@ def interest_model(values, rates, months):
 
     """
 
-    return round(values * (1 + rates) ** months, 2)
+    return format_money(values * (1 + rates) ** months, 2)
 
 
 def interest_rate_dx(values, rates, month):
@@ -167,7 +167,7 @@ def calc_payment(balance, months, rate):
         compounded_rate = (rate + 1)**months
         payment = balance * ((rate * compounded_rate) / (compounded_rate - 1))
 
-    return round(payment, 2)
+    return format_money(payment, 2)
 
 if __name__ == '__main__':
     # Testing
