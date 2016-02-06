@@ -12,5 +12,5 @@ balance_history = [
 assets = [
     Debt(title='Other', amount=5000, interest=0.12),
     Debt(title='Credit Card', amount=2000, interest=0.18),
-    Debt(title='Student Loan', amount=12000, interest=0.01)
+    Debt(title='Student Loan', amount=12000, interest=0.035)
 ]

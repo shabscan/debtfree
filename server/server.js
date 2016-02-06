@@ -1,3 +1,9 @@
+Meteor.publish('userData', function () {
+return Meteor.users.find({_id: this.userId},
+{fields: {services: 1 }
+});
+});
+
 var Loans = new Mongo.Collection("loans");
 
 // Test data.
@@ -26,5 +32,8 @@ Meteor.methods({
 
 	showEnvVar: function () {
 		console.log(process.env.MONGO_URL);
-	}
+	},
+	updateDebtProfile: function(debtprofile, userId){
+		Meteor.users.update({_id: userId}, {$set: {debtprofile: debtprofile}});
+}
 });

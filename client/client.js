@@ -1,3 +1,5 @@
+Meteor.subscribe('userData');
+
 var Loans = new Mongo.Collection("loans");
 
 Template.mainScreen.helpers ({

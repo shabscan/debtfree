@@ -1,3 +1,5 @@
+from collections import namedtuple
+import pandas as pd
 import numpy as np
 from backend.Logic.fakes import assets
 
@@ -15,8 +17,16 @@ def pull_loan_data():
     return amount_array, interest_array
 
 
-def kj_model(pv, comp_periods, period_interest, pay_freq=12):
-    np.pmt(rate, months, balance, 0)  # Gives a negative value
+def weighted_interest_sum_projection(payment=1500):
+    total_debt = 0
+    weighted_interest = []
+
+    for loan in assets:
+        total_debt += loan.amount
+        weighted_interest.append(loan.interest * loan.amount)
+
+    weighted_interest = np.sum(np.array(weighted_interest) / total_debt)
+    return weighted_interest
 
 
 def interest_rate_dx(values, rates, month):
@@ -43,11 +53,6 @@ def credit_time_to_pay(balance, rate, payment):
     """
 
     http://itools-ioutils.fcac-acfc.gc.ca/CCPC-CPCC/CCPCCalc-CPCCCalc-eng.aspx
-    :param balance: credit card balance
-    :param rate: monthly interest rate
-    :param payment: monthly payment
-    :return: number of compounding periods (months)
-
     #TODO: can implement min payment as $10 or 2%
 
     >>> credit_time_to_pay(1000, 0.18/12, 20)
@@ -152,3 +157,6 @@ def calc_payment(balance, months, rate):
 
     alter_calc = np.pmt(rate, months, balance, 0)  # Gives a negative value
     return format_money(payment, 2)
+
+if __name__ == '__main__':
+    weighted_interest_sum_projection()
