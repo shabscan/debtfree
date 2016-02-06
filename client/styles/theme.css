@@ -29,7 +29,7 @@
     font-weight: normal;
     font-style: normal;
 
-}
+} 
 
 html, body {
 	height: 90%;
@@ -70,13 +70,77 @@ h1{
 	padding-top: 10px;
 	width: 100%;
 	height: 100%;
-	z-index: 11;
+	z-index: 1;
 }
 
 .swiper-content {
-	z-index: -1;
+	z-index: 1;
 }
 
 .swiper-slide {
 	text-align: center;
+}
+
+/* Nav bar style */
+.navigation-bar {
+	position: absolute;
+	top: 0;
+	left:0;
+	height: 100vh !important;
+	width: 20vw;
+	background: lightgrey;
+	z-index: 10 !important;
+}
+
+.nav-item {
+	list-style: none;
+}
+
+.nav-list {
+	padding: 0;
+	margin: 0;
+	padding-top: 3em;
+}
+
+.nav-link {
+	padding-top: 0.4em;
+	padding-bottom: 0.4em;
+	padding-left: 0 !important;
+	padding-right: 1.3em;
+	margin-left: 0 !important;
+	display: block;
+	background: lightgrey;
+	text-align: center;
+	font-size: 1.3em;
+	width: 100%;
+	text-decoration: none !important;
+}
+
+.nav-link:hover{
+	background: #8EBEE8;
+	text-color: lightgrey;
+}
+
+
+.current {
+	background: white !important;
+}
+
+.hamburger-button {
+	position: absolute;
+	top: 1em;
+	left: 1em;
+	padding-left: 1.25em;
+	z-index: 20 !important;
+}
+.hamburger-button:before {
+	content: "";
+	position: absolute;
+	top: 1em;
+	left: 1em;
+	width: 2em;
+	height: 2em;
+	border-top: 0.375em double #000;
+	border-bottom: 0.375em solid #000;
+	z-index: 20 !important;
 }
