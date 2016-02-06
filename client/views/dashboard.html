@@ -56,9 +56,23 @@
 
 			That is, pre-parsed as x and y data.
 		 */
+		var data1 = {
+			labels: ["2015", "2016", "2017", "2018"],
+			datasets: [
+				{
+					label: "Student Loan",
+					fillColor: "rgba(220,220,220,0.2)",
+					strokeColor: "rgba(220, 220, 220,1)",
+					pointColor: "rgba(220, 220, 220, 1)",
+					pointStrokeColor: "#fff",
+					pointHighlightFill: "#fff",
+					pointHighlightStroke: "rgba(220, 220, 220, 1)",
+					data: [95, 89, 80, 59, 32, 12, 0]
+				},
+			]
+		}
 
-		var ctx = document.getElementById("chart1").getContext("2d");
-		var data = {
+		var data2 = {
 			labels: ["January", "February", "March"],
 			datasets: [
 				{
@@ -73,7 +87,16 @@
 				},
 			]
 		}
-		var firstChart = new Chart(ctx).Line(data)
+
+		var ctx = document.getElementById("chart1").getContext("2d");
+		var data = data1;
+		var firstChart = new Chart(ctx).Line(data);
+		window.setTimeout(function() {
+			firstChart.dataset[0].points[2].value = 10;
+			console.log("refreshed")
+			firstChart.update();
+		}, 1000);
+
 
 	</script>
 </template>
