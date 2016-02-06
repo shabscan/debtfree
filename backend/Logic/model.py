@@ -138,20 +138,3 @@ def calc_payment(balance, months, rate):
         payment = balance * ((rate * compounded_rate) / (compounded_rate - 1))
 
     return format_money(payment, 2)
-
-if __name__ == '__main__':
-    # Testing
-    fake_data_array = [Debt(title='Student Loan', amount=12000, interest=0.02),
-                       Debt(title='Credit Card', amount=2000, interest=0.18),
-                       Debt(title='Credit Line', amount=5000, interest=0.08)]
-
-    amount_array = []
-    interest_array = []
-    for item in fake_data_array:
-        amount_array.append(item.amount)
-        interest_array.append(item.interest)
-
-    amount_array = np.array(amount_array)
-    interest_array = np.array(interest_array)
-
-    print(interest_model(amount_array, interest_array, 1))
