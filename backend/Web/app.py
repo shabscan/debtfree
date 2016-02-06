@@ -1,19 +1,33 @@
 from flask import Flask
-from Web.decorators import json
+from backend.Web.decorators import json
+from backend.Logic.fakes import assets, balance_history
 
 app = Flask(__name__)
+temp_message = dict(message='Hello Scotiabank Hacks')
 
 
 @app.route('/')
 @json
 def index():
-    return {'message': 'Hello Hacks'}
+    return temp_message
 
 
-@app.route('/debts', methods=['POST'])
+@app.route('/debts')
 @json
-def optimise_allocations():
-    pass
+def get_debts():
+    return dict(firstname='John', lastname='Smith', loans=assets)
+
+
+@app.route('/history')
+@json
+def get_historical_data():
+    return dict(history=balance_history)
+
+
+@app.route('/projection', methods=['POST'])
+@json
+def get_debt_projection():
+    return temp_message
 
 
 if __name__ == '__main__':
