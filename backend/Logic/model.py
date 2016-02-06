@@ -1,3 +1,5 @@
+from collections import namedtuple
+import pandas as pd
 import numpy as np
 from backend.Logic.fakes import assets
 
@@ -13,10 +15,6 @@ def pull_loan_data():
     amount_array = np.array(amount_array)
     interest_array = np.array(interest_array)
     return amount_array, interest_array
-
-
-def kj_model(pv, comp_periods, period_interest, pay_freq=12):
-    np.pmt(rate, months, balance, 0)  # Gives a negative value
 
 
 def weighted_interest_sum_projection(payment=1500):
@@ -55,11 +53,6 @@ def credit_time_to_pay(balance, rate, payment):
     """
 
     http://itools-ioutils.fcac-acfc.gc.ca/CCPC-CPCC/CCPCCalc-CPCCCalc-eng.aspx
-    :param balance: credit card balance
-    :param rate: monthly interest rate
-    :param payment: monthly payment
-    :return: number of compounding periods (months)
-
     #TODO: can implement min payment as $10 or 2%
 
     >>> credit_time_to_pay(1000, 0.18/12, 20)
