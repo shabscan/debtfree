@@ -4,9 +4,9 @@
 	<!-- Structure required for Swiper.js -->
 	<div class='swiper-container'>
 		<div class='swiper-wrapper'>
-			<div id='first-screen' class='swiper-slide'>{{>firstScreen }}</div>
-			<div id='second-screen' class='swiper-slide'>{{>secondScreen }}</div>
-			<div id='third-screen' class='swiper-slide'>{{>thirdScreen }}</div>
+			<div id='first-screen' class='swiper-slide'>{{>leftScreen }}</div>
+			<div id='second-screen' class='swiper-slide'>{{>mainScreen }}</div>
+			<div id='third-screen' class='swiper-slide'>{{>rightScreen }}</div>
 		</div> <!-- class='swiper-wrapper' -->
 	<div class='swiper-pagination'></div>
 	</div> <!-- class='swiper-container' -->
@@ -24,22 +24,33 @@
 </template>
 
 
-<template name='firstScreen'>
+<template name='leftScreen'>
 <p class='swiper-content'>Here's the first screen.</p>
 </template>
 
-<template name='secondScreen'>
+<template name='mainScreen'>
 	<canvas id='chart1' width='400' height='400'></canvas>
 	<script>
-		console.log({{loans}});
-		/*
+		/* Assuming that data will reach this point in the following form, 
+		   more or less:
+
+		var loans = {
+					loan: { 
+							payments: [], 
+							dates: []
+						  }
+					};
+
+			That is, pre-parsed as x and y data.
+		 */
+/*
 		var ctx = document.getElementById("chart1").getContext("2d");
 		var data = { labels: {{loans}}};
-		var firstChart = new Chart(ctx).Line(data, options)
-		*/
+		var firstChart = new Chart(ctx).Line(data, options)*/
+
 	</script>
 </template>
 
-<template name='thirdScreen'>
+<template name='rightScreen'>
 <p class='swiper-content'>Here's the third screen.</p>
 </template>

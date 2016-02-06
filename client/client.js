@@ -1,6 +1,6 @@
 var Loans = new Mongo.Collection("loans");
 
-Template.body.helpers ({
+Template.mainScreen.helpers ({
 	loans: function() {
 		return Loans.find({});
 	}
