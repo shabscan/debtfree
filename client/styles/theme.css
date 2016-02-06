@@ -1,28 +1,43 @@
-body {
+/*body {
   color: #eee;
   background: #242424;
+}*/
+
+
+@font-face {
+    font-family: 'futuramedium';
+    src: url('/fonts/futura-webfont.eot');
+    src: url('/fonts/futura-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/futura-webfont.woff2') format('woff2'),
+         url('/fonts/futura-webfont.woff') format('woff'),
+         url('/fonts/futura-webfont.ttf') format('truetype'),
+         url('/fonts/futura-webfont.svg#futuramedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
 }
-.container {
-  width: 960px;
-  margin: 0 auto;
+body{
+  font-family: 'futuramedium', sans-serif !important;
 }
-.jumbotron {
-  padding: 100px;
-  font-size: 16px;
-  font-weight: 200;
-  line-height: 1.5;
-  color: #222;
-  background-color: #eee;
-  border-radius: 13px;
-  font-family: "Helvetica Neue Ultra Light", "Helvetica Neue", "Arial Narrow", "Arial", sans-serif;
-}
+
+
 h1 {
   line-height: 1;
 }
 p {
   line-height: 1.4;
+  font-weight:600;
 }
 button {
   background: #eee;
   padding: 10px 20px;
+}
+
+h1{
+  font-weight:600;
+  font-size: 6em;
+}
+
+.fancy{
+  font-family: 'Roboto Slab', serif !important;
 }
