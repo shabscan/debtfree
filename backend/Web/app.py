@@ -2,7 +2,7 @@ from flask import Flask, request
 from backend.Web.decorators import json
 from backend.Logic.model import weighted_interest_sum
 from backend.Logic.fakes import assets, balance_history, Balance
-from backend.Logic.simulator import walk_forward_projection
+from backend.Logic.simulator import walk_forward_projection, impact_calculator_total
 
 app = Flask(__name__)
 temp_message = dict(message='Hello Scotiabank Hacks')
@@ -25,6 +25,14 @@ def get_debts():
 @json
 def get_historical_data():
     return dict(history=balance_history)
+
+
+def get_impact_data():
+    #TODO use function from simulator
+
+    #Calculate impact on all the debt vehicles and send to FRONT END
+    impact_calculator_total(pv, rate, payments, lumpsum, fv=0)
+    pass
 
 
 @app.route('/projection', methods=['POST'])
