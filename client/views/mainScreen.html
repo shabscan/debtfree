@@ -2,7 +2,7 @@
 	<canvas id='chart1' width='400' height='400'></canvas><br><br>
 	<a href="/debtTalkSelectDebt" class="btn-primary btn">Debt Breakdown</a>
 	<script>
-		/* Assuming that data will reach this point in the following form, 
+		/* Assuming that data will reach this point in the following form, onSlideChangeEnd(swiper)
 		   more or less:
 
 		var loans = {
@@ -49,11 +49,6 @@
 		var ctx = document.getElementById("chart1").getContext("2d");
 		var data = data1;
 		var firstChart = new Chart(ctx).Line(data);
-		window.setTimeout(function() {
-			firstChart.dataset[0].points[2].value = 10;
-			console.log("refreshed")
-			firstChart.update();
-		}, 1000);
 
 	</script>
 	

@@ -214,3 +214,9 @@ width:100%;
   border-color:white;
   color:white;
 }
+
+/* Left page */
+.interest-graph {
+	text-align: right;
+	padding: 10px;
+}
