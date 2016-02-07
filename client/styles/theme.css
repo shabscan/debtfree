@@ -264,3 +264,36 @@ select {
   top: 50%;
   transform: translateY(-50%);
 }
+
+.x-label {
+	text-align: center;
+	width: 90%;
+	padding-left: 10%;
+	position: relative;
+	top: -60px;
+}
+
+.x-label-1 {
+	display: inline-block;
+	width: 50%;
+	text-align: left;
+}
+
+.x-label-2 {
+	display: inline-block;
+	width: 50%;
+	text-align: right;
+}
+
+.eleven {
+	position: absolute;
+	top: 168px;
+	left: 18px;
+
+}
+
+.zero {
+	position: absolute;
+	top: 368px;
+	left: 367px;
+}
