@@ -1,6 +1,6 @@
 Meteor.publish('userData', function () {
 return Meteor.users.find({_id: this.userId},
-{fields: {services: 1,debtprofile:1, goalprofile:1, userHistory:1 }
+{fields: {services: 1,debtprofile:1, goalprofile:1, userHistory:1 , interestValue:1}
 });
 });
 
@@ -41,7 +41,22 @@ Meteor.methods({
 
 	},
 	updateUserHistory:function(userId){	
-		hello = Meteor.http.call("GET", "https://scotiadebt.herokuapp.com/history");
-		Meteor.users.update({_id: userId}, {$set: {userHistory: hello.data.history}});
+		pulledData = Meteor.http.call("GET", "https://scotiadebt.herokuapp.com/history");
+		Meteor.users.update({_id: userId}, {$set: {userHistory: pulledData.data.history}});
+	},
+	updateInterestProfile:function(userId){
+		currentInterest = Meteor.user().debtprofile.totalInterest;
+		dailyInterest = currentInterest/365;
+		weeklyInterest = dailyInterest*7;
+		monthlyInterest = dailyInterest*30;
+
+		var profile = {
+			daily: dailyInterest,
+			weekly: weeklyInterest,
+			monthly: monthlyInterest,
+			yearly: currentInterest
+		}
+		Meteor.users.update({_id: userId}, {$set:{interestValue: profile}});
+
 	}
 });
