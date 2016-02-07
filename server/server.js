@@ -25,9 +25,9 @@ Loans.insert({
 });
 
 Meteor.methods({
-	removeAll: function () {
-
-		Test.remove({});
+	getData: function () {
+		console.log(Meteor.user().userHistory);
+		return Meteor.user().userHistory;
 	},
 
 	showEnvVar: function () {
