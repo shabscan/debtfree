@@ -2,7 +2,7 @@
 	<canvas id='chart1' width='400' height='400' class="mainDebtScreen"></canvas><br><br>
 	<a href="/debtTalkSelectDebt" class="btn-primary btn">Debt Breakdown</a>
 	<script>
-		var data = Meteor.call("getData");
+		var data = dummyData;
 		console.log(data);
 
 		var x = [];
@@ -14,7 +14,9 @@
 		}
 
 		var data1 = {
-			labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+			labels: ["January", "February", "March", "April", "May", "June",
+					 "July", "August", "September", "October", "November",
+					 "December"],
 			datasets: [
 				{
 					label: "Student Loan",
