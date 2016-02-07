@@ -1,38 +1,4 @@
 <template name='mainScreen'>
 	<canvas id='chart1' width='400' height='400' class="mainDebtScreen"></canvas><br><br>
 	<a href="/debtTalkSelectDebt" class="btn-primary btn">Debt Breakdown</a>
-	<script>
-		var data = dummyData;
-		console.log(data);
-
-		var x = [];
-		var y = [];
-
-		for (var elem of data) {
-			x[x.length] = elem[0];
-			y[y.length] = elem[1];
-		}
-
-		var data1 = {
-			labels: ["January", "February", "March", "April", "May", "June",
-					 "July", "August", "September", "October", "November",
-					 "December"],
-			datasets: [
-				{
-					label: "Student Loan",
-					fillColor: "rgba(220,220,220,0.2)",
-					strokeColor: "rgba(220, 220, 220,1)",
-					pointColor: "rgba(220, 220, 220, 1)",
-					pointStrokeColor: "#fff",
-					pointHighlightFill: "#fff",
-					pointHighlightStroke: "rgba(220, 220, 220, 1)",
-					data: y
-				}
-			]
-		}
-
-		var ctx = document.getElementById("chart1").getContext("2d");
-		var firstChart = new Chart(ctx).Line(data1);
-
-	</script>
 </template>

@@ -7,3 +7,10 @@ Template.impactCalculator.events({
 		Session.set('impactCalculatorAmount', e.currentTarget.value);
 	}
 });
+
+
+Template.impactCalculator.helpers({
+	impactAmount: function () {
+		return accounting.formatMoney(Session.get('impactCalculatorAmount'));
+	}
+});

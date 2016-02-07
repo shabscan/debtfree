@@ -2,20 +2,34 @@
 <div class='swiper-content'>
 	<h3>How much is my interest costing me?</h3>
 
-	<br><br>
-	<div class="col-xs-4"></div>
-	<div class="leftScreen-graphs col-xs-2">
-		<canvas id="daily-graph" width="60" height="60" class="interest-graph">
-		</canvas>
+	<div class="col-xs-12">
 
-		<canvas id="weekly-graph" width="60" height="60" class="interest-graph">
-		</canvas>
 
-		<canvas id="monthly-graph" width="60" height="60" class="interest-graph">
-		</canvas>
+	</div>
 
-		<canvas id="yearly-graph" width="60" height="60" class="interest-graph">
+	<div class="leftScreen-graphs container">
+	<div class="col-xs-6">
+		<canvas id="daily-graph" width="100%" class="interest-graph">
 		</canvas>
+		<h4 style="margin-top:0px">Daily</h4>
+		</div>
+		<div class="col-xs-6">
+		<canvas id="weekly-graph" width="100%" class="interest-graph">
+		</canvas>
+		<h4 style="margin-top:0px">Weekly</h4>
+		</div>
+		</div>
+		<div class="container">
+		<div class="col-xs-6">
+		<canvas id="monthly-graph" width="100%" class="interest-graph">
+		</canvas>
+		<h4 style="margin-top:0px">Monthly</h4>
+		</div>
+		<div class="col-xs-6">
+		<canvas id="yearly-graph" width="100%" class="interest-graph">
+		</canvas>
+		<h4 style="margin-top:0px">Yearly</h4>
+		</div>
 	</div>
 
 	<div class="leftScreen-icons col-xs-6">
@@ -55,9 +69,8 @@
 			},
 			{
 				value: 10 - data.value,
-				color: "#FFFFFF",
+				color: "#EEEEEE",
 				highlight: "#FFFFFF",
-				label: ""
 			}]);
 		}
 </script>
