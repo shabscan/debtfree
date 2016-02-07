@@ -6,13 +6,7 @@ Template.debtTalkSelectDebt.helpers({
 });
 
 getTotalDebt = function(){
-	var totalDebt = 0;
-	for (var key in Meteor.user().debtprofile){
-		if(Meteor.user().debtprofile[key][1] != ''){
-			totalDebt += parseInt(Meteor.user().debtprofile[key][1]);
-		}
-	}
-	return totalDebt;
+	return parseInt(Meteor.user().debtprofile.totalDebt);
 }
 
 
@@ -34,13 +28,16 @@ Template.debtTalkSelectDebt.events({
 		debtinterest2 = document.getElementById('debtinterest2').value;
 		debtinterest3 = document.getElementById('debtinterest3').value;
 		debtinterest4 = document.getElementById('debtinterest4').value;
+		debtInterest = (debtvalue1*debtinterest1 + debtvalue2*debtinterest2 + debtvalue3*debtinterest3 + debtvalue4*debtinterest4)/100;
+		totalDebt = debtvalue1 + debtvalue2 + debtvalue3 + debtvalue4;
 		debtprofile = {
 			debttype1:[debttype1, debtvalue1, debtinterest1],
 			debttype2:[debttype2, debtvalue2, debtinterest2],
 			debttype3:[debttype3, debtvalue3, debtinterest3],
-			debttype4:[debttype4, debtvalue4, debtinterest4]
+			debttype4:[debttype4, debtvalue4, debtinterest4],
+			totalInterest: debtInterest,
+			totalDebt: totalDebt
 		}
-
 		Meteor.call('updateDebtProfile', debtprofile, Meteor.userId(), function(err){
 			if(err){
 				console.log(err);
@@ -48,13 +45,8 @@ Template.debtTalkSelectDebt.events({
 				Router.go('debtTalkSetGoals');
 			}
 		});
-		
-		
-
 	}
 });
-
-
 Template.debtTalkSetGoals.rendered = function () {
 	Session.set('target', 'conservative');
 	Session.set('currentValue', 0);

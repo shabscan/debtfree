@@ -1,16 +1,18 @@
-<template name="challengesMain">
-<div style="background-color:#9BCB65;height:100vh">
+<template name="challenges">
 	{{>navigation_bar}}
-<div class="container" style="text-align:center;color:white">
-<div class="row">
-<div class="col-xs-12">
-<h3 class="fancy" style="margin-bottom:0px">Challenges</h3>
-<p style="font-size:1.5em">Challenge yourself to lose debt.</p>
-
-
-</div>
-</div>
-</div>
-</div>
-
+	<style>
+		.hamburger-button {
+			background-color: white !important;
+		}
+		.hamburger-button::before {
+			background-color: white !important;
+		}
+		.hamburger-button::after {
+			background-color: white !important;
+		}
+	</style>
+	<img src="challenges-4.png" style="position: absolute; top: 0; left: 0; display: block; max-width: 402px; width: auto; height: auto;">
+	<div style="position: absolute; top: 180px; background-color: rgba(0,0,0,0.4);width:100%;height: 100px;margin:0;padding:0;">
+		<a href='{{pathFor route="coffee"}}' style="height:100%; width:100%;"> </a>
+	</div>
 </template>

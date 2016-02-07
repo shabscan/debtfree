@@ -1,16 +1,8 @@
 <template name='mainScreen'>
 	<canvas id='chart1' width='400' height='400' class="mainDebtScreen"></canvas><br><br>
-	<a href="/debtTalkSelectDebt" class="btn-primary btn">Debt Breakdown</a>
 	<script>
 		var finData = loan1;
 
-		var x1 = [];
-		var y1 = [];
-
-		for (var elem of finData["plan1"]["payments"]) {
-			x1[x1.length] = elem[0];
-			y1[y1.length] = elem[1];
-		}
 
 		var x2 = [];
 		var y2 = [];
@@ -19,39 +11,125 @@
 			x2[x2.length] = elem[0];
 			y2[y2.length] = elem[1];
 		}
+		
+		var x1 = [];
+		var y1 = [];
+
+		for (var elem of finData["plan1"]["payments"]) {
+			x1[x1.length] = elem[0];
+			y1[y1.length] = elem[1];
+		}
+
+		for (var i = finData["plan1"]["payments"].length - 1;
+			i < finData["plan2"]["payments"].length; i++) 
+		{
+			x1[i] = x2[i];
+			y1[i] = 0;
+		}
+
+		var x3 = [];
+		var y3 = [];
+
+		for (var elem of finData["plan3"]["payments"]) {
+			x3[x3.length] = elem[0];
+			y3[y3.length] = elem[1];
+		}
+
+		for (var i = finData["plan3"]["payments"].length - 1;
+			i < finData["plan2"]["payments"].length; i++) 
+		{
+			x3[i] = x2[i];
+			y3[i] = 0;
+		}
+		
+		var aggressive = {
+			fillColor: "rgba(220,220,220,0)",
+			strokeColor: "rgba(110, 220, 110,1)",
+			pointColor: "rgba(110, 220, 110, 1)",
+			pointStrokeColor: "#fff",
+			pointHighlightFill: "#fff",
+			pointHighlightStroke: "rgba(220, 220, 220, 1)",
+			data: y3,
+			bezierCurves: false,
+			pointDot: false,
+			scaleShowGridLines: false
+		};
+
+		var moderate = {
+			fillColor: "rgba(220,220,220,0)",
+			strokeColor: "rgba(110, 110, 220,1)",
+			pointColor: "rgba(110, 110, 220, 1)",
+			pointStrokeColor: "#fff",
+			pointHighlightFill: "#fff",
+			pointHighlightStroke: "rgba(220, 220, 220, 1)",
+			pointDotRadius: 2,
+			data: y1,
+			bezierCurves: false,
+			pointDot: false,
+			scaleShowGridLines: false
+		};
+
+		var conservative = {
+			fillColor: "#FFF",
+			strokeColor: "#FFF",
+			pointColor: "rgba(220, 110, 110, 0)",
+			pointStrokeColor: "#fff",
+			pointHighlightFill: "#fff",
+			pointHighlightStroke: "#FFF",
+			pointDotRadius: 2,
+			data: y2,
+			bezierCurves: false,
+			pointDot: false,
+			scaleShowGridLines: false
+		};
 
 		var data1 = {
 			labels: x1,
-			datasets: [
-				{
-					fillColor: "rgba(220,220,220,0.2)",
-					strokeColor: "rgba(220, 220, 220,1)",
-					pointColor: "rgba(220, 220, 220, 1)",
-					pointStrokeColor: "#fff",
-					pointHighlightFill: "#fff",
-					pointHighlightStroke: "rgba(220, 220, 220, 1)",
-					data: y1,
-					bezierCurves: false,
-					pointDot: false,
-					scaleShowGridLines: false
-				},
-				{
-					fillColor: "rgba(110,110,220,0.2)",
-					strokeColor: "rgba(110, 110, 220,1)",
-					pointColor: "rgba(110, 110, 220, 1)",
-					pointStrokeColor: "#fff",
-					pointHighlightFill: "#fff",
-					pointHighlightStroke: "rgba(220, 220, 220, 1)",
-					data: y2,
-					bezierCurves: false,
-					pointDot: false,
-					scaleShowGridLines: false
-				}
-			]
-		}
+			datasets: [ aggressive ]
+		};
 
 		var ctx = document.getElementById("chart1").getContext("2d");
-		var firstChart = new Chart(ctx).Line(data1);
+		var firstChart = new Chart(ctx).Line(data1, { responsive: true,
+				showTooltips: false , showScale: false});
 
+		var points = firstChart.datasets[0].points;
+
+		function goAggressive() { 
+			for (var i = 0; i < points.length; i++) {
+				points[i].value = y3[i];
+				points[i].fillColor = "rgba(110, 220, 110, 1)";
+				if (points[i].value == 0) {
+					points[i].fillColor = "rgba(255, 255, 255, 0)";
+				}
+			}
+			firstChart.update();
+		}
+
+		function goModerate() { 
+			for (var i = 0; i < points.length; i++) {
+				points[i].value = y1[i];
+				points[i].fillColor = "rgba(110, 110, 250, 1)";
+				if (points[i].value == 0) {
+					points[i].fillColor = "rgba(255, 255, 255, 0)";
+				}
+			}
+			firstChart.update();
+		}
+
+		function goConservative() { 
+			for (var i = 0; i < points.length; i++) {
+				points[i].value = y2[i];
+				points[i].fillColor = "rgba(220, 110, 110, 1)";
+				if (points[i].value == 0) {
+					points[i].fillColor = "rgba(255, 255, 255, 0)";
+				}
+			}
+			firstChart.update();
+		}
 	</script>
+
+	<a href="#" class="btn-primary btn" onclick="goAggressive()">Aggressive</a>
+	<a href="#" class="btn-primary btn" onclick="goModerate()">Moderate</a>
+	<a href="#" class="btn-primary btn" onclick="goConservative()">Conservative</a><br>
+	<a href="/debtTalkSelectDebt" class="btn-primary btn">Debt Breakdown</a>
 </template>
