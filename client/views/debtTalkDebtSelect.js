@@ -92,7 +92,7 @@ Template.debtTalkSetGoals.helpers({
 		return accounting.formatMoney(Session.get('totalDebt')*value);
 	},
 	month:function(){
-		return Session.get('targetTime');
+		return Math.floor(Session.get('targetTime'));
 	},
 	amountMoney:function(){
 		return Session.get('targetMonthlyPayment');
@@ -129,6 +129,9 @@ Template.debtTalkSetGoals.events({
 		}
 		Meteor.call('updateGoalProfile', goalprofile, Meteor.userId());
 
+	},
+	'click #goalSettingContinue':function(){
+		Router.go('dashboard');
 	}
 });
 

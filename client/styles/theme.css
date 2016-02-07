@@ -232,3 +232,8 @@ width:100%;
 .goalsettingCanvas{
   width:100% !important;
 }
+
+select {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+}
