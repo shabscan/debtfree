@@ -1,5 +1,9 @@
 <template name='mainScreen'>
-	<canvas id='chart1' width='400' height='400' class="mainDebtScreen"></canvas><br><br>
+	<span class="eleven"><small>11k</small></span>
+	<span class="zero"><small>0</small></span>
+	<canvas id='chart1' width='400' height='400' class="mainDebtScreen"></canvas><br>
+	<div class="x-label"><span class="x-label-1">2015</span><span class="x-label-2"> 2022</span></div>
+<br>
 	<script>
 		var finData = loan1;
 
@@ -50,6 +54,7 @@
 			pointHighlightFill: "#fff",
 			pointHighlightStroke: "rgba(220, 220, 220, 1)",
 			data: y3,
+			pointDotRadius: 2,
 			bezierCurves: false,
 			pointDot: false,
 			scaleShowGridLines: false
