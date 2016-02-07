@@ -14,7 +14,7 @@ Router.route('/createAccount');
 Router.route('/debtTalkSelectDebt');
 Router.route('/debtTalkSetGoals');
 Router.route('/impactCalculator');
-Router.route('/challengesMain');
+Router.route('/challenges');
 Router.route('/dashboard', {name: 'dashboard', onBeforeAction:function(){
 	if(Meteor.userId()){
 		this.next();
