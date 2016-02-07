@@ -4,43 +4,39 @@ import pandas as pd
 from backend.Logic.model import pull_loan_data
 
 
-def project_debt_balance(values, interest_rates, payment=1200):
-    pass
-
-
-def impact_calculator_total(present_value, annual_rate, payments, lump_sum, fv=0.0):
+def impact_calculator_total(present_value, annual_rate, payments, lump_sum, future_value=0):
     # Calculate the impact (time) in throwing more money at a single debt
-    t0 = np.nper(annual_rate, -payments, present_value, fv)
-    t1 = np.nper(annual_rate, -payments, present_value - lump_sum, fv)
+    t0 = np.nper([annual_rate], [payments], [present_value], [future_value])
+    t1 = np.nper([annual_rate], [payments], [present_value - lump_sum], [future_value])
 
     time_saved = t1 - t0
+    print('t {} - {} = {}'.format(t1, t0, time_saved))
+    return '{} days'.format(round(time_saved[0] * 365))
 
-    return '{} days'.format(round(time_saved * 365))
 
-
-def walk_forward_projection(principal, rate, months=None, payment=1200):
+def walk_forward_projection(principal, annual_rate, months=None, payment=1200):
     """
     :param payment:
     :param principal: positive value
     :param months: compounding periods (can be weeks)
-    :param rate: matches compounding periods (can be weekly rate)
+    :param annual_rate: matches compounding periods (can be weekly rate)
     :return:
     """
     loan_table = pd.DataFrame(columns=('payment', 'interest_segment', 'principal_segment', 'balance'))
-    rate /= 12  # Make the rate a monthly rate.
+    annual_rate /= 12  # Make the rate a monthly rate.
 
     # Initialise Table
     loan_table.loc[0] = [0, 0, 0, principal]
 
     # Handles pay by amount
     if months is not None:
-        payment = -np.pmt(rate, months, principal)  # Handles pay by amount
+        payment = -np.pmt(annual_rate, months, principal)  # Handles pay by amount
 
     time_step = 1
     balance = principal
 
     while not (balance <= 0 or time_step > 100):
-        fraction_interest = balance * rate
+        fraction_interest = balance * annual_rate
 
         if balance > payment:
             balance = round(balance + fraction_interest - payment, 2)
@@ -60,9 +56,4 @@ if __name__ == '__main__':
     amounts, rates = pull_loan_data()
 
     print(impact_calculator_total(present_value=5000, payments=867, annual_rate=0.07, lump_sum=300))
-
-    '''
-    out = walk_forward_projection(amounts[2], rates[2], payment=400)
-    print(out['balance'].as_matrix().tolist())
-    print('Pay ${} a month'.format(out['payment'].ix[1]))
-    '''
+    print(impact_calculator_total(present_value=2000, payments=60.75, annual_rate=0.199, lump_sum=120))

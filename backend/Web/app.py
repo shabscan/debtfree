@@ -30,22 +30,31 @@ def get_historical_data():
 @app.route('/impact', methods=['GET', 'POST'])
 @json
 def get_impact_data():
-    # TODO use function from simulator
-
     # noinspection PyBroadException
     try:
         payload = request.get_json()
         payments = payload['payment']
         lump_sum = payload['lumpsum']
     except:
-        payments = 400
-        lump_sum = 400
+        payments = 800
+        lump_sum = 200
 
     # Calculate impact on all the debt vehicles and send to FRONT END
     impact_dict = dict()
     for asset in assets:
-        # fv should be given a target value
-        time_saved = impact_calculator_total(asset.amount, asset.interest, payments, lump_sum, fv=0)
+        print(asset.amount, asset.interest)
+        debt_table = walk_forward_projection(
+            principal=asset.amount,
+            annual_rate=asset.interest,
+            months=48
+        )
+        print('${}'.format(round(debt_table['payment'].ix[1], 2)))
+        time_saved = impact_calculator_total(
+            present_value=asset.amount,
+            annual_rate=asset.interest,
+            payments=round(debt_table['payment'].ix[1], 2),
+            lump_sum=lump_sum
+        )
         impact_dict[asset.title] = time_saved
 
     response_object = {
@@ -68,9 +77,9 @@ def get_debt_projection():
     try:
         payload = request.get_json()
         payment = payload['payment']
-        projection_data = walk_forward_projection(principal=principal, rate=average_weighted_rate, payment=payment)
+        projection_data = walk_forward_projection(principal=principal, annual_rate=average_weighted_rate, payment=payment)
     except:
-        projection_data = walk_forward_projection(principal=principal, rate=average_weighted_rate, months=60)
+        projection_data = walk_forward_projection(principal=principal, annual_rate=average_weighted_rate, months=60)
 
     balance_list = projection_data['balance'].as_matrix().tolist()
     balance_dictionaries = []

@@ -38,6 +38,7 @@ body{
   font-family: 'futuramedium', sans-serif !important;
   left: 0;
   padding: 0;
+  overflow: hidden;
 }
 
 
@@ -264,4 +265,14 @@ select {
   transform: translateY(-50%);
 }
 
+.aggressive {
+	background-color: rgba(110, 110, 250, 1) !important;
+}
 
+.moderate {
+	background-color: rgba(110, 110, 250, 1) !important;
+}
+
+.conservative {
+	background-color: rgba(220, 110, 110, 1) !important;
+}
