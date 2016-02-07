@@ -2,17 +2,19 @@
 <div class='swiper-content'>
 	<h3>How much is my interest costing me?</h3>
 
-	<div class="leftScreen-graphs col-xs-6">
-		<canvas class="daily-graph">
+	<br><br>
+	<div class="col-xs-4"></div>
+	<div class="leftScreen-graphs col-xs-2">
+		<canvas id="daily-graph" width="60" height="60" class="interest-graph">
 		</canvas>
 
-		<canvas class="weekly-graph">
+		<canvas id="weekly-graph" width="60" height="60" class="interest-graph">
 		</canvas>
 
-		<canvas class="monthly-graph">
+		<canvas id="monthly-graph" width="60" height="60" class="interest-graph">
 		</canvas>
 
-		<canvas class="yearly-graph">
+		<canvas id="yearly-graph" width="60" height="60" class="interest-graph">
 		</canvas>
 	</div>
 
@@ -21,13 +23,42 @@
 </div>
 
 <script>
-	var ctx = document.getElementsByClassName("daily-graph")[0].getContext("2d");
-	var data-daily = [
+	var values = [
 		{
-			value: 13,
-			color: 
+			name: "daily-graph",
+			value: 6,
+			color: "#F7464A",
+		},
+		{
+			name: "weekly-graph",
+			value: 4,
+			color: "#F7464A",
+		},
+		{
+			name: "monthly-graph",
+			value: 3,
+			color: "#F7464A",
+		},
+		{
+			name: "yearly-graph",
+			value: 5,
+			color: "#F7464A",
 		}
-	]
-	var dailyChart = new Chart(ctx).Doughnut(data);
+	];
+
+	for (var data of values) {
+		new Chart(document.getElementById(data.name).getContext("2d")).Doughnut([{
+				value: data.value,
+				color: data.color,
+				highlight: data.color,
+				label: ""
+			},
+			{
+				value: 10 - data.value,
+				color: "#FFFFFF",
+				highlight: "#FFFFFF",
+				label: ""
+			}]);
+		}
 </script>
 </template>
