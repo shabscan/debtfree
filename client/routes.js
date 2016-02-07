@@ -11,6 +11,7 @@ Router.route('/', {name: 'home', controller: 'MainController', onBeforeAction:fu
 	}
 }});
 Router.route('/createAccount');
+Router.route('/coffee');
 Router.route('/debtTalkSelectDebt');
 Router.route('/debtTalkSetGoals');
 Router.route('/impactCalculator');
