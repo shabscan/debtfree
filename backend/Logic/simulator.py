@@ -8,29 +8,14 @@ def project_debt_balance(values, interest_rates, payment=1200):
     pass
 
 
-def impact_calculator_total(pv, rate, payments, lumpsum, fv=0):
-    """
-    Calculate the impact (time) in throwing more money at a single debt
-    """
-
-    rate /= 12
-
-    t0 = np.nper(rate, -payments, pv, fv)
-    t1 = np.nper(rate, -payments, pv - lumpsum, fv)
+def impact_calculator_total(present_value, annual_rate, payments, lump_sum, fv=0.0):
+    # Calculate the impact (time) in throwing more money at a single debt
+    t0 = np.nper(annual_rate, -payments, present_value, fv)
+    t1 = np.nper(annual_rate, -payments, present_value - lump_sum, fv)
 
     time_saved = t1 - t0
 
-    # Output into units of time
-    if time_saved >= 12:
-        out_saved = str(round(time_saved / 12, 2)) + ' years'
-    elif time_saved >= 1:
-        out_saved = str(round(time_saved, 2)) + ' months'
-    elif time_saved >= 1 / 4:
-        out_saved = str(round(time_saved / 4, 2)) + 'weeks'
-    else:
-        out_saved = str(round(time_saved / 28, 2)) + ' days'
-
-    return out_saved
+    return '{} days'.format(round(time_saved * 365))
 
 
 def walk_forward_projection(principal, rate, months=None, payment=1200):
@@ -74,6 +59,10 @@ def walk_forward_projection(principal, rate, months=None, payment=1200):
 if __name__ == '__main__':
     amounts, rates = pull_loan_data()
 
+    print(impact_calculator_total(present_value=5000, payments=867, annual_rate=0.07, lump_sum=300))
+
+    '''
     out = walk_forward_projection(amounts[2], rates[2], payment=400)
     print(out['balance'].as_matrix().tolist())
     print('Pay ${} a month'.format(out['payment'].ix[1]))
+    '''
