@@ -1,0 +1,33 @@
+<template name='leftScreen'>
+<div class='swiper-content'>
+	<h3>How much is my interest costing me?</h3>
+
+	<div class="leftScreen-graphs col-xs-6">
+		<canvas class="daily-graph">
+		</canvas>
+
+		<canvas class="weekly-graph">
+		</canvas>
+
+		<canvas class="monthly-graph">
+		</canvas>
+
+		<canvas class="yearly-graph">
+		</canvas>
+	</div>
+
+	<div class="leftScreen-icons col-xs-6">
+	</div>
+</div>
+
+<script>
+	var ctx = document.getElementsByClassName("daily-graph")[0].getContext("2d");
+	var data-daily = [
+		{
+			value: 13,
+			color: 
+		}
+	]
+	var dailyChart = new Chart(ctx).Doughnut(data);
+</script>
+</template>
