@@ -32,20 +32,20 @@ def get_historical_data():
 def get_impact_data():
     # TODO use function from simulator
 
+    # noinspection PyBroadException
     try:
         payload = request.get_json()
         payments = payload['payment']
-        lumpsum = payload['lumpsum']
+        lump_sum = payload['lumpsum']
     except:
-        payments = 4000
-        lumpsum = 400
+        payments = 400
+        lump_sum = 400
 
     # Calculate impact on all the debt vehicles and send to FRONT END
-
     impact_dict = dict()
     for asset in assets:
         # fv should be given a target value
-        time_saved = impact_calculator_total(asset.amount, asset.interest, payments, lumpsum, fv=0)
+        time_saved = impact_calculator_total(asset.amount, asset.interest, payments, lump_sum, fv=0)
         impact_dict[asset.title] = time_saved
 
     response_object = {

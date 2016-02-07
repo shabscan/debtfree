@@ -237,3 +237,7 @@ select {
   -webkit-appearance: none;
   -webkit-border-radius: 0px;
 }
+
+.disable-link:hover{
+  background-color: transparent;
+}
