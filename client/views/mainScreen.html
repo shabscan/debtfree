@@ -1,4 +1,57 @@
 <template name='mainScreen'>
 	<canvas id='chart1' width='400' height='400' class="mainDebtScreen"></canvas><br><br>
 	<a href="/debtTalkSelectDebt" class="btn-primary btn">Debt Breakdown</a>
+	<script>
+		var finData = loan1;
+
+		var x1 = [];
+		var y1 = [];
+
+		for (var elem of finData["plan1"]["payments"]) {
+			x1[x1.length] = elem[0];
+			y1[y1.length] = elem[1];
+		}
+
+		var x2 = [];
+		var y2 = [];
+
+		for (var elem of finData["plan2"]["payments"]) {
+			x2[x2.length] = elem[0];
+			y2[y2.length] = elem[1];
+		}
+
+		var data1 = {
+			labels: x1,
+			datasets: [
+				{
+					label: "Student Loan",
+					fillColor: "rgba(220,220,220,0.2)",
+					strokeColor: "rgba(220, 220, 220,1)",
+					pointColor: "rgba(220, 220, 220, 1)",
+					pointStrokeColor: "#fff",
+					pointHighlightFill: "#fff",
+					pointHighlightStroke: "rgba(220, 220, 220, 1)",
+					data: y1,
+					bezierCurves: false,
+					scaleShowGridLines: false
+				},
+				{
+					label: "Student Loan",
+					fillColor: "rgba(110,110,220,0.2)",
+					strokeColor: "rgba(110, 110, 220,1)",
+					pointColor: "rgba(110, 110, 220, 1)",
+					pointStrokeColor: "#fff",
+					pointHighlightFill: "#fff",
+					pointHighlightStroke: "rgba(220, 220, 220, 1)",
+					data: y2,
+					bezierCurves: false,
+					scaleShowGridLines: false
+				}
+			]
+		}
+
+		var ctx = document.getElementById("chart1").getContext("2d");
+		var firstChart = new Chart(ctx).Line(data1);
+
+	</script>
 </template>
