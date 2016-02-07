@@ -222,3 +222,11 @@ width:100%;
 	text-align: right;
 	padding: 10px;
 }
+
+.mainDebtScreen{
+  width:100% !important;
+}
+
+.goalsettingCanvas{
+  width:100% !important;
+}
