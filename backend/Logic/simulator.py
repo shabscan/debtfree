@@ -15,22 +15,22 @@ def impact_calculator_total(pv, rate, payments, lumpsum, fv=0):
 
     rate /= 12
 
-    t0 = np.nper(rate, payments, pv, fv)
-    t1 = np.nper(rate, payments, pv - lumpsum, fv)
+    t0 = np.nper(rate, -payments, pv, fv)
+    t1 = np.nper(rate, -payments, pv - lumpsum, fv)
 
     time_saved = t1 - t0
 
     # Output into units of time
     if time_saved >= 12:
-        out_saved = time_saved / 12  # years
+        out_saved = str(round(time_saved / 12, 2)) + ' years'
     elif time_saved >= 1:
-        out_saved = time_saved  # months
+        out_saved = str(round(time_saved, 2)) + ' months'
     elif time_saved >= 1 / 4:
-        out_saved = time_saved / 4  # weeks
+        out_saved = str(round(time_saved / 4, 2)) + 'weeks'
     else:
-        out_saved = time_saved / 28 # days
+        out_saved = str(round(time_saved / 28, 2)) + ' days'
 
-    return format(out_saved, ',.1f')
+    return out_saved
 
 
 def walk_forward_projection(principal, rate, months=None, payment=1200):

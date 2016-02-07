@@ -27,18 +27,38 @@ def get_historical_data():
     return dict(history=balance_history)
 
 
+@app.route('/impact', methods=['GET', 'POST'])
+@json
 def get_impact_data():
-    #TODO use function from simulator
+    # TODO use function from simulator
 
-    #Calculate impact on all the debt vehicles and send to FRONT END
-    impact_calculator_total(pv, rate, payments, lumpsum, fv=0)
-    pass
+    try:
+        payload = request.get_json()
+        payments = payload['payment']
+        lumpsum = payload['lumpsum']
+    except:
+        payments = 4000
+        lumpsum = 400
+
+    # Calculate impact on all the debt vehicles and send to FRONT END
+
+    impact_dict = dict()
+    for asset in assets:
+        # fv should be given a target value
+        time_saved = impact_calculator_total(asset.amount, asset.interest, payments, lumpsum, fv=0)
+        impact_dict[asset.title] = time_saved
+
+    response_object = {
+        'impacts': impact_dict
+    }
+
+    print(response_object)
+    return response_object
 
 
 @app.route('/projection', methods=['POST'])
 @json
 def get_debt_projection():
-
     # Get Post body if it exists
     average_weighted_rate, principal = weighted_interest_sum()
 
