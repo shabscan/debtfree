@@ -11,7 +11,11 @@ def impact_calculator_total(present_value, annual_rate, payments, lump_sum, futu
 
     time_saved = t1 - t0
     print('t {} - {} = {}'.format(t1, t0, time_saved))
-    return '{} days'.format(round(time_saved[0] * 365))
+
+    #np.nper(rate, )
+    money_saved = 0
+
+    return round(time_saved[0] * 365), money_saved
 
 
 def walk_forward_projection(principal, annual_rate, months=None, payment=1200):

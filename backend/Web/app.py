@@ -41,21 +41,19 @@ def get_impact_data():
 
     # Calculate impact on all the debt vehicles and send to FRONT END
     impact_dict = dict()
-    for asset in assets:
-        print(asset.amount, asset.interest)
-        debt_table = walk_forward_projection(
-            principal=asset.amount,
-            annual_rate=asset.interest,
-            months=48
-        )
-        print('${}'.format(round(debt_table['payment'].ix[1], 2)))
-        time_saved = impact_calculator_total(
-            present_value=asset.amount,
-            annual_rate=asset.interest,
-            payments=round(debt_table['payment'].ix[1], 2),
-            lump_sum=lump_sum
-        )
-        impact_dict[asset.title] = time_saved
+    average_weighted_rate, principal = weighted_interest_sum()
+    debt_table = walk_forward_projection(principal=principal, annual_rate=average_weighted_rate, months=12*4)
+
+    print('$ {}'.format(round(debt_table['payment'].ix[1], 2)))
+    time_saved, money_saved = impact_calculator_total(
+        present_value=principal,
+        annual_rate=average_weighted_rate,
+        payments=round(debt_table['payment'].ix[1], 2),
+        lump_sum=lump_sum
+    )
+
+    impact_dict['time_saved'] = time_saved
+    impact_dict['money_saved'] = money_saved
 
     response_object = {
         'impacts': impact_dict
