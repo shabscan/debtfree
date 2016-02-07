@@ -21,10 +21,10 @@ Template.dashboard.events({
 });
 
 Template.leftScreen.rendered = function () {
-	Session.set('coffees', 0);
-	Session.set('beers', 0);
-	Session.set('transit', 0);
-	Session.set('dinner', 0);
+	Session.set('daily', 0);
+	Session.set('weekly', 0);
+	Session.set('monthly', 0);
+	Session.set('yearly', 0);
 	Session.set('currentSelector', 0);
 };
 
@@ -32,9 +32,35 @@ Template.leftScreen.rendered = function () {
 Template.leftScreen.events({
 	'click .btn-date-selector': function (e) {
 		arrayOfPrices = [5,10,3,50];
-		 Session.set('currentSelector', e.currentTarget.id);
-		 Session.set('coffees');
+		var currentSelector = e.currentTarget.id;
+		currentProfile = Meteor.user().interestValue;
+		 Session.set('currentSelector', currentSelector);
 
+		 if(currentSelector == 'coffees'){
+		 	Session.set('daily', currentProfile.daily/arrayOfPrices[0]);
+		 	Session.set('weekly', currentProfile.weekly/arrayOfPrices[0]);
+		 	Session.set('monthly', currentProfile.monthly/arrayOfPrices[0]);
+		 	Session.set('yearly', currentProfile.yearly/arrayOfPrices[0]);
+
+		 }else if(currentSelector == 'beers'){
+		 	Session.set('daily', currentProfile.daily/arrayOfPrices[1]);
+		 	Session.set('weekly', currentProfile.weekly/arrayOfPrices[1]);
+		 	Session.set('monthly', currentProfile.monthly/arrayOfPrices[1]);
+		 	Session.set('yearly', currentProfile.yearly/arrayOfPrices[1]);
+
+		 }else if(currentSelector == 'transit'){
+		 	Session.set('daily', currentProfile.daily/arrayOfPrices[2]);
+		 	Session.set('weekly', currentProfile.weekly/arrayOfPrices[2]);
+		 	Session.set('monthly', currentProfile.monthly/arrayOfPrices[2]);
+		 	Session.set('yearly', currentProfile.yearly/arrayOfPrices[2]);
+
+		 }else{
+		 	Session.set('daily', currentProfile.daily/arrayOfPrices[3]);
+		 	Session.set('weekly', currentProfile.weekly/arrayOfPrices[3]);
+		 	Session.set('monthly', currentProfile.monthly/arrayOfPrices[3]);
+		 	Session.set('yearly', currentProfile.yearly/arrayOfPrices[3]);
+		 }
+		 	
 	}
 });
 
@@ -44,7 +70,7 @@ Template.leftScreen.events({
 Template.leftScreen.helpers({
 	currentPicture: function () {
 		var currentSelector = Session.get('currentSelector');
-		arrayOfPics = ['http://i.imgur.com/QunahD1.png', 'http://i.imgur.com/nXG3OoE.png', 'http://i.imgur.com/wAPFccR.png'];
+		arrayOfPics = ['http://i.imgur.com/QunahD1.png', 'http://i.imgur.com/nXG3OoE.png', 'http://i.imgur.com/wAPFccR.png', 'http://i.imgur.com/8sbxSEm.png'];
 
 		if(currentSelector == 'coffees'){
 			return arrayOfPics[0];
@@ -68,6 +94,18 @@ Template.leftScreen.helpers({
 		}else{
 			return arrayOfPrices[3];
 		}
+	},
+	daily:function(){
+		return accounting.toFixed(Session.get('daily'),1);
+	},
+	weekly:function(){
+		return accounting.toFixed(Session.get('weekly'),1);
+	},
+	monthly:function(){
+		return accounting.toFixed(Session.get('monthly'),0);
+	},
+	yearly:function(){
+		return accounting.toFixed(Session.get('yearly'),0);
 	}
 });
 

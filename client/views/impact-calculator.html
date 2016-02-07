@@ -4,8 +4,8 @@
 <div class="container" style="text-align:center;color:white">
 <div class="row">
 <div class="col-xs-12" style="text-align:left">
-<h3 class="fancy" style="font-size:50px;text-align:center">Ask Manny!</h3>
-<p style="font-size:1.5em" class="wow bounceInDown">Hi {{currentUser.services.facebook.name}}, Talk to me!</p>
+<h3 style="font-size:50px;text-align:center">Ask Manny!</h3>
+<p style="font-size:1.5em;text-align:center" class="wow bounceInDown">Hi {{currentUser.services.facebook.name}}, Talk to me!</p>
 </div>
 
 <div class="wow bounceInDown" data-wow-delay="1s" style="text-align:left">
@@ -14,24 +14,12 @@
 
 
 </div>
-<div class="col-xs-4" style="padding-right:0px">
-<p style="font-size:1em;padding-top:5px">Hi Manny! I might</p>
-
-</div>
-
-<div class="col-xs-5" style="padding-left:0px">
-<select class="form-control formStyled" id="impactCalculatorAction">
-  <option value="goout">Go out tonight</option>
-  <option value="makebuy">Make a Purchase</option>
-</select>
-
-</div>
-<div class="col-xs-3" style="padding-top:5px;padding-left:0px">
-<p style="font-size:1em">And spend</p>
+<div class="col-xs-12" style="padding-right:0px">
+<p style="font-size:1em;padding-top:5px;text-align:center">Hi Manny! So... I was thinking of going out tonight or making a purchase that may end up costing me</p> <input type="number" style="background-color:transparent;border:0;width:100%;font-size:1.5em;border-bottom:solid 1px white;display:inline;text-align:center" placeholder="$10" id="impactAmount">
 
 </div>
 <div class="col-xs-3" style="padding-right:0px">
-<input type="number" style="background-color:transparent;border:0;width:100%;font-size:1.5em;border-bottom:solid 1px white" placeholder="$10" id="impactAmount">
+
 </div>
 <div class="col-xs-9" style="padding-left:0px">
 <p style="font-size:1em;padding-top:10px">Could you please tell me the impact?</p>
@@ -40,7 +28,16 @@
 <div class="row">
 <div class="container">
 <div class="col-xs-12" style="margin-top:20px">
-<p style="font-size:1.5em" class="wow bounceInDown">Well, {{currentUser.services.facebook.name}}, a {{impactAmount}} payment towards</p>
+<p style="font-size:1.5em;text-align:center" class="wow bounceInDown">Well, {{currentUser.services.facebook.name}}... A {{impactAmount}} payment towards your total debt Would result in you achieving peace of mind and knocking out your total debt</p>
+<!--
+<select class="form-control formStyled" style="text-align:center;width:100%;text-align-last:center" id="impactCalculatorAction">
+  <option value="ccdebt" style="text-align:center">Credit Card Debt</option>
+  <option value="studentloans" style="text-align:center">Student Loans</option>
+</select>
+!-->
+<h1 style="text-align:center">{{daysReduced}}</h1>
+
+<p style="font-size:1.5em;text-align:center">Days ahead of schedule ;)</p>
 </div>
 </div>
 </div>

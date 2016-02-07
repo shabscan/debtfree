@@ -15,6 +15,7 @@ Router.route('/coffee');
 Router.route('/debtTalkSelectDebt');
 Router.route('/debtTalkSetGoals');
 Router.route('/impactCalculator');
+Router.route('/myiq');
 Router.route('/challenges');
 Router.route('/dashboard', {name: 'dashboard', onBeforeAction:function(){
 	if(Meteor.userId()){

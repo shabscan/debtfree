@@ -38,6 +38,7 @@ body{
   font-family: 'futuramedium', sans-serif !important;
   left: 0;
   padding: 0;
+  overflow: hidden;
 }
 
 
@@ -248,6 +249,9 @@ select {
 
 .btn-date-selector{
   color:black;
+  border-color:black;
+  opacity: 0.7;
+
 }
 
 .btn-date-selector:hover{
@@ -260,5 +264,3 @@ select {
   top: 50%;
   transform: translateY(-50%);
 }
-
-
