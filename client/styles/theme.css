@@ -224,7 +224,9 @@ width:100%;
 }
 
 .mainDebtScreen{
-  width:100% !important;
+  width: 100% !important;
+  padding: 2em;
+  padding-bottom: 5em;
 }
 
 .goalsettingCanvas{

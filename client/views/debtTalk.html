@@ -1,19 +1,6 @@
 <template name="debtTalkSelectDebt">
-	<a href='#' onclick="openNav()" style="z-index: 21 !important;">
-		<div class='hamburger-button'></div>
-	</a>
-<nav class='navigation-bar'>
-	<ul class='nav-list'>
-		<li class='nav-item'><a href='#' class='nav-link'>Impact Calculator</a></li>
-		<li class='nav-item'><a href='#' class='nav-link'>Achievements</a></li>
-		<li class='nav-item'><a href='#' class='nav-link current'>Dashboards</a></li>
-		<li class='nav-item'><a href='#' class='nav-link'>Track It</a></li>
-		<li class='nav-item'><a href='#' class='nav-link'>Debt Tips</a></li>
-		<li class='nav-item'><a href='#' class='nav-link'>Financial Planner</a></li>
-		<li class='nav-item'><a href='#' class='nav-link'>Budgetting Tool</a></li>
-	</ul>
-</nav>
 <div style="background-color:#9BCB65;height:100vh">
+	{{>navigation_bar}}
 <div class="container" style="text-align:center;color:white">
 <div class="row">
 <div class="col-xs-12">
@@ -116,6 +103,7 @@
 
 <template name="debtTalkSetGoals">
 <div style="background-color:#9BCB65;height:100vh">
+	{{>navigation_bar}}
 <div style="background-color:#9BCB65;height:100%">
   <div class="container" style="text-align:center;color:white">
     <div class="row">
@@ -123,18 +111,10 @@
         <h4 class="fancy" style="margin-bottom:0px">Game Plan</h4>
         <p style="font-size:1.5em">Let's tackle your debt.</p>
       </div>
-
       <div class="col-xs-12" style="text-align:left">
       <hr>
-      <p style="text-align:center">I want to bring my debt</p>
-
-      <fieldset class="form-group form-styled" style="text-align:left">
-      <div class="col-xs-12">
-        <label for="debtFrom">From</label>
-        <input type="number" id="debtFrom" name="debtFrom" class="form-control">
-        </div>
-      </fieldset>
-
+      <p style="text-align:center">I want to bring my debt from</p>
+      <h1 style="font-size:70px;text-align:center">{{totalDebt}}</h1>
       </div>
     </div>
   </div>

@@ -5,6 +5,16 @@ Template.debtTalkSelectDebt.helpers({
 });({
 });
 
+getTotalDebt = function(){
+	var totalDebt = 0;
+	for (var key in Meteor.user().debtprofile){
+		if(Meteor.user().debtprofile[key][1] != ''){
+			totalDebt += parseInt(Meteor.user().debtprofile[key][1]);
+		}
+	}
+	return totalDebt;
+}
+
 
 Template.debtTalkSelectDebt.events({
 	'submit #debtSelect': function (e) {
@@ -42,6 +52,7 @@ Template.debtTalkSelectDebt.events({
 Template.debtTalkSetGoals.rendered = function () {
 	Session.set('target', 'conservative');
 	Session.set('currentValue', 0);
+	Session.set('totalDebt', getTotalDebt());
 	Session.set('targetTime', 0);
 	Session.set('targetMonthlyPayment', 0);
 	Session.set('targetFinalPayment');
@@ -63,7 +74,6 @@ Template.debtTalkSetGoals.rendered = function () {
 	  start: 0,
 	  step:1
 	});
-
 };
 
 Template.debtTalkSetGoals.helpers({
@@ -78,14 +88,17 @@ Template.debtTalkSetGoals.helpers({
 		}else{
 			value = 0;
 		}
-		Session.set('targetFinalPayment', Session.get('currentValue') - Session.get('currentValue')*value);
-		return accounting.formatMoney(Session.get('currentValue')*value);
+		Session.set('targetFinalPayment', Session.get('totalDebt') - Session.get('totalDebt')*value);
+		return accounting.formatMoney(Session.get('totalDebt')*value);
 	},
 	month:function(){
 		return Session.get('targetTime');
 	},
 	amountMoney:function(){
 		return Session.get('targetMonthlyPayment');
+	},
+	totalDebt:function(){
+		return accounting.formatMoney(Session.get('totalDebt'));
 	}
 });
 
@@ -93,9 +106,6 @@ Template.debtTalkSetGoals.helpers({
 Template.debtTalkSetGoals.events({
 	'click .btn':function(e){
 		Session.set('target', e.currentTarget.id);
-	},
-	'input #debtFrom':function(e){
-		Session.set('currentValue', e.target.value);
 	},
 	'click #slider1':function(e){
 		var monthlyPayment = Session.get('targetFinalPayment')/slider1.get();
@@ -121,4 +131,7 @@ Template.debtTalkSetGoals.events({
 
 	}
 });
+
+
+
 
