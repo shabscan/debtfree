@@ -41,7 +41,13 @@ Template.debtTalkSelectDebt.events({
 			debttype4:[debttype4, debtvalue4, debtinterest4]
 		}
 
-		Meteor.call('updateDebtProfile', debtprofile, Meteor.userId());
+		Meteor.call('updateDebtProfile', debtprofile, Meteor.userId(), function(err){
+			if(err){
+				console.log(err);
+			}else{
+				Router.go('debtTalkSetGoals');
+			}
+		});
 		
 		
 
