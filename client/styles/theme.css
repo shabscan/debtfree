@@ -102,7 +102,7 @@ width:100%;
 
 
 .form-styled input{
-    background-color:transparent;color:white;border:0;box-shadow:none;border-bottom:solid 2px white;
+    background-color:transparent;color:white;box-shadow:none;border:solid 2px white;
 /* Swiper styles */
 }
 .swiper-container {
@@ -203,4 +203,14 @@ width:100%;
     top:20px;
 	z-index: 20 !important;
 	cursor: pointer;
+}
+
+.btn-debt-selector{
+  color:white;
+  
+}
+
+.btn-debt-selector .active{
+  border-color:white;
+  color:white;
 }

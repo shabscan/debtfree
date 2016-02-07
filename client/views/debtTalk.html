@@ -100,4 +100,62 @@
 
 
 
-<template name="debtTalk"></template>
+<template name="debtTalkSetGoals">
+<div style="background-color:#9BCB65;height:100vh">
+  <div class="container" style="text-align:center;color:white">
+    <div class="row">
+      <div class="col-xs-12">
+        <h4 class="fancy" style="margin-bottom:0px">Game Plan</h4>
+        <p style="font-size:1.5em">Let's tackle your debt.</p>
+      </div>
+
+      <div class="col-xs-12" style="text-align:left">
+      <hr>
+      <p>I want to bring my debt</p>
+
+      <fieldset class="form-group form-styled" style="text-align:left">
+      <div class="col-xs-12">
+        <label for="debtFrom">From</label>
+        <input type="number" id="debtFrom" name="debtFrom" class="form-control">
+        </div>
+      </fieldset>
+
+      </div>
+    </div>
+  </div>
+<div class="col-xs-12 debtSelectorTarget">
+<div class="col-xs-3">
+<a class="btn btn-debt-selector" id='conservative'>Conservative</a>
+</div>
+
+<div class="col-xs-3">
+<a class="btn btn-debt-selector" id='moderate'>Moderate</a>
+
+</div>
+
+<div class="col-xs-3">
+<a class="btn btn-debt-selector" id='aggressive'>Aggressive</a>
+
+</div>
+<div class="col-xs-3">
+<a class="btn btn-debt-selector" id='extreme'>Extreme</a>
+
+</div>
+
+</div>
+<div class="col-xs-12" style="padding-top:20px;">
+<p style="color:white;text-align:center">To</p>
+</div>
+<div class="col-xs-12" style="text-align:center;color:white">
+<h1 style="font-size:70px">{{target}}</h1>
+</div>
+
+<div class="col-xs-12" style="padding-top:20px;">
+<p style="color:white;text-align:center">In</p>
+</div>
+
+</div>
+
+
+
+</template>
