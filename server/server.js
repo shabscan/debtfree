@@ -63,17 +63,12 @@ Meteor.methods({
 		 var options = {
         headers: {'Content-Type': 'application/json'},
         data: {
-        	"payment":0, 
-        	"lumpsum": lumpsum
-        }
+        	"payment":90, 
+        	"lumpsum": parseInt(lumpsum)
+        	 }
       }
 
       data = HTTP.call('POST', 'https://scotiadebt.herokuapp.com/impact', options);
-		pulled = data.data.impacts;
-		sum = 0;
-		for (var key in pulled){
-			sum+= pulled[key];
-		}
-		Meteor.users.update({_id: userId}, {$set: {reducedDays: sum}});
+		Meteor.users.update({_id: userId}, {$set: {reducedDays: data.data.impacts.time_saved}});
 	}
 });
