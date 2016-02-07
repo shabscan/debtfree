@@ -1,21 +1,6 @@
 <template name='dashboard'>
 	<script src="../lib/Chart.js"></script>
-
-	<a href='#' onclick="openNav()" style="z-index: 21 !important;">
-		<div class='hamburger-button'></div>
-	</a>
-<nav class='navigation-bar'>
-	<ul class='nav-list'>
-		<li class='nav-item'><a href='#' class='nav-link'>Impact Calculator</a></li>
-		<li class='nav-item'><a href='#' class='nav-link'>Achievements</a></li>
-		<li class='nav-item'><a href='#' class='nav-link current'>Dashboards</a></li>
-		<li class='nav-item'><a href='#' class='nav-link'>Track It</a></li>
-		<li class='nav-item'><a href='#' class='nav-link'>Debt Tips</a></li>
-		<li class='nav-item'><a href='#' class='nav-link'>Financial Planner</a></li>
-		<li class='nav-item'><a href='#' class='nav-link'>Budgetting Tool</a></li>
-	</ul>
-</nav>
-
+	{{>navigation_bar}}
 	<!-- Structure required for Swiper.js -->
 	<div class='swiper-container'>
 		<div class='swiper-wrapper'>
@@ -43,14 +28,6 @@
 			effect: 'flip' // default is 'slide'
 		});
 
-		function openNav() {
-			var navPos = document.getElementsByClassName('navigation-bar')[0];
-			if (navPos.style.left == "0px") {
-				navPos.style.left = "-100%";
-			} else {
-				navPos.style.left = "0px";
-			}
-		};
 	</script>
 
 </template>
