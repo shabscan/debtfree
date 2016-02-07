@@ -42,8 +42,10 @@ def get_impact_data():
     # Calculate impact on all the debt vehicles and send to FRONT END
     impact_dict = dict()
     average_weighted_rate, principal = weighted_interest_sum()
-    debt_table = walk_forward_projection(principal=principal, annual_rate=average_weighted_rate, months=12*4)
+    debt_table = walk_forward_projection(principal=principal, annual_rate=average_weighted_rate, months=60)
 
+    print('principal: {}'.format(principal))
+    print('interest: {}'.format(average_weighted_rate))
     print('$ {}'.format(round(debt_table['payment'].ix[1], 2)))
     time_saved, money_saved = impact_calculator_total(
         present_value=principal,

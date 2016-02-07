@@ -6,16 +6,17 @@ from backend.Logic.model import pull_loan_data
 
 def impact_calculator_total(present_value, annual_rate, payments, lump_sum, future_value=0):
     # Calculate the impact (time) in throwing more money at a single debt
-    t0 = np.nper([annual_rate], [payments], [present_value], [future_value])
-    t1 = np.nper([annual_rate], [payments], [present_value - lump_sum], [future_value])
+    annual_rate /= 12
+    t0 = np.nper([annual_rate], [-payments], [present_value], [future_value])
+    t1 = np.nper([annual_rate], [-payments], [present_value - lump_sum], [future_value])
 
     time_saved = t1 - t0
     print('t {} - {} = {}'.format(t1, t0, time_saved))
 
-    #np.nper(rate, )
-    money_saved = 0
+    impact_rate = ((annual_rate / 12 + 1) ** (t0 * 12)) - 1
+    money_saved = impact_rate * lump_sum
 
-    return round(time_saved[0] * 365), money_saved
+    return -round(time_saved[0] * 365/12), round(money_saved[0], 2)
 
 
 def walk_forward_projection(principal, annual_rate, months=None, payment=1200):
@@ -59,5 +60,5 @@ def walk_forward_projection(principal, annual_rate, months=None, payment=1200):
 if __name__ == '__main__':
     amounts, rates = pull_loan_data()
 
-    print(impact_calculator_total(present_value=5000, payments=867, annual_rate=0.07, lump_sum=300))
+    print(impact_calculator_total(present_value=5000, payments=119.73, annual_rate=0.07, lump_sum=300))
     print(impact_calculator_total(present_value=2000, payments=60.75, annual_rate=0.199, lump_sum=120))
