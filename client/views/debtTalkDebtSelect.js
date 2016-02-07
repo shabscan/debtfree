@@ -29,7 +29,7 @@ Template.debtTalkSelectDebt.events({
 		debtinterest3 = document.getElementById('debtinterest3').value;
 		debtinterest4 = document.getElementById('debtinterest4').value;
 		debtInterest = (debtvalue1*debtinterest1 + debtvalue2*debtinterest2 + debtvalue3*debtinterest3 + debtvalue4*debtinterest4)/100;
-		totalDebt = debtvalue1 + debtvalue2 + debtvalue3 + debtvalue4;
+		totalDebt = Number(debtvalue1) + Number(debtvalue2) + Number(debtvalue3) + Number(debtvalue4);
 		debtprofile = {
 			debttype1:[debttype1, debtvalue1, debtinterest1],
 			debttype2:[debttype2, debtvalue2, debtinterest2],

@@ -1,11 +1,11 @@
 <template name="impactCalculator">
-<div style="background-color:#9BCB65;height:100vh">
+<div style="background-color:#00A896;height:100vh">
 	{{>navigation_bar}}
 <div class="container" style="text-align:center;color:white">
 <div class="row">
 <div class="col-xs-12" style="text-align:left">
 <h3 style="font-size:50px;text-align:center">Ask Manny!</h3>
-<p style="font-size:1.5em;text-align:center" class="wow bounceInDown">Hi {{currentUser.services.facebook.name}}, Talk to me!</p>
+<p style="font-size:1.5em;text-align:center;color:#F0F3BD" class="wow bounceInDown">Hi {{currentUser.services.facebook.name}}, Talk to me!</p>
 </div>
 
 <div class="wow bounceInDown" data-wow-delay="1s" style="text-align:left">
@@ -28,16 +28,16 @@
 <div class="row">
 <div class="container">
 <div class="col-xs-12" style="margin-top:20px">
-<p style="font-size:1.5em;text-align:center" class="wow bounceInDown">Well, {{currentUser.services.facebook.name}}... A {{impactAmount}} payment towards your total debt Would result in you achieving peace of mind and knocking out your total debt</p>
+<p style="font-size:1.5em;text-align:center;color:#F0F3BD" class="wow bounceInDown">Well, {{currentUser.services.facebook.name}}... A {{impactAmount}} payment towards your total debt Would result in you achieving peace of mind and knocking out your total debt</p>
 <!--
 <select class="form-control formStyled" style="text-align:center;width:100%;text-align-last:center" id="impactCalculatorAction">
   <option value="ccdebt" style="text-align:center">Credit Card Debt</option>
   <option value="studentloans" style="text-align:center">Student Loans</option>
 </select>
 !-->
-<h1 style="text-align:center">{{daysReduced}}</h1>
+<h1 style="text-align:center;color:#F0F3BD">{{daysReduced}}</h1>
 
-<p style="font-size:1.5em;text-align:center">Days ahead of schedule ;)</p>
+<p style="font-size:1.5em;text-align:center;color:#F0F3BD">Days ahead of schedule ;)</p>
 </div>
 </div>
 </div>
