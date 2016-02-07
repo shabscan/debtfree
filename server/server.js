@@ -39,5 +39,9 @@ Meteor.methods({
 	updateGoalProfile:function(goalprofile,userId){
 		Meteor.users.update({_id: userId}, {$set: {goalprofile: goalprofile}});
 
+	},
+	updateUserHistory:function(userId){	
+		hello = Meteor.http.call("GET", "https://scotiadebt.herokuapp.com/history");
+		Meteor.users.update({_id: userId}, {$set: {userHistory: hello.data.history}});
 	}
 });
