@@ -35,15 +35,15 @@ def get_debt_projection():
     balance_list = projection_data['balance'].as_matrix().tolist()
     balance_dictionaries = []
 
-    print('Average Interest Rate: {}'.format(average_weighted_rate))
-    print('Term: {}'.format(len(projection_data) - 1))
-    print('Monthly Payment ${}'.format(round(projection_data['payment'].ix[1], 2)))
-
     for i in range(len(balance_list)):
         balance_dictionaries.append(Balance(week=i, balance=balance_list[i]))
 
-    return {
+    response_object = {
         'projection': balance_dictionaries,
+        'term': len(projection_data) - 1,
+        'payment': round(projection_data['payment'].ix[1], 2),
+        'principal_segment': round(projection_data['principal_segment'].ix[1], 2),
+        'interest_segment': round(projection_data['interest_segment'].ix[1], 2),
         'interest expense': {
             'daily': average_weighted_rate * principal / 365.25,
             'weekly': average_weighted_rate * principal / 52,
@@ -51,6 +51,9 @@ def get_debt_projection():
             'yearly': average_weighted_rate * principal
         }
     }
+
+    print(response_object)
+    return response_object
 
 
 if __name__ == '__main__':
