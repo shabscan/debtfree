@@ -30,22 +30,20 @@ def get_historical_data():
 @app.route('/impact', methods=['GET', 'POST'])
 @json
 def get_impact_data():
-    # TODO use function from simulator
-
     # noinspection PyBroadException
     try:
         payload = request.get_json()
         payments = payload['payment']
         lump_sum = payload['lumpsum']
     except:
-        payments = 400
-        lump_sum = 400
+        payments = 800
+        lump_sum = 200
 
     # Calculate impact on all the debt vehicles and send to FRONT END
     impact_dict = dict()
     for asset in assets:
-        # fv should be given a target value
-        time_saved = impact_calculator_total(asset.amount, asset.interest, payments, lump_sum, fv=0)
+        # @KJ fv doesn't mean anything to people that didn't write your code.
+        time_saved = impact_calculator_total(asset.amount, asset.interest, payments, lump_sum)
         impact_dict[asset.title] = time_saved
 
     response_object = {
