@@ -1,21 +1,21 @@
 from collections import namedtuple
 
 Debt = namedtuple('Debt', ['title', 'amount', 'interest'])
-HistoricalBalance = namedtuple('HistoricalBalance', ['week', 'balance'])
+Balance = namedtuple('Balance', ['week', 'balance'])
 
 balance_history = [
-    HistoricalBalance(week=1, balance=23529.29),
-    HistoricalBalance(week=2, balance=23157.58),
-    HistoricalBalance(week=3, balance=22784.24),
-    HistoricalBalance(week=4, balance=22409.27),
-    HistoricalBalance(week=5, balance=22032.66),
-    HistoricalBalance(week=6, balance=21654.41),
-    HistoricalBalance(week=7, balance=21274.50),
-    HistoricalBalance(week=8, balance=20892.92),
-    HistoricalBalance(week=9, balance=20509.68),
-    HistoricalBalance(week=10, balance=20124.76),
-    HistoricalBalance(week=11, balance=19738.15),
-    HistoricalBalance(week=12, balance=19349.86)
+    Balance(week=1, balance=23529.29),
+    Balance(week=2, balance=23157.58),
+    Balance(week=3, balance=22784.24),
+    Balance(week=4, balance=22409.27),
+    Balance(week=5, balance=22032.66),
+    Balance(week=6, balance=21654.41),
+    Balance(week=7, balance=21274.50),
+    Balance(week=8, balance=20892.92),
+    Balance(week=9, balance=20509.68),
+    Balance(week=10, balance=20124.76),
+    Balance(week=11, balance=19738.15),
+    Balance(week=12, balance=19349.86)
 ]
 
 assets = [

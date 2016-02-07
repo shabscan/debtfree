@@ -15,7 +15,7 @@ def pull_loan_data():
     return amount_array, interest_array
 
 
-def weighted_interest_sum_projection(payment=1500):
+def weighted_interest_sum():
     total_debt = 0
     weighted_interest = []
 
@@ -24,7 +24,7 @@ def weighted_interest_sum_projection(payment=1500):
         weighted_interest.append(loan.interest * loan.amount)
 
     weighted_interest = np.sum(np.array(weighted_interest) / total_debt)
-    return weighted_interest
+    return weighted_interest, total_debt
 
 
 def interest_rate_dx(values, rates, month):
@@ -157,4 +157,4 @@ def calc_payment(balance, months, rate):
     return format_money(payment, 2)
 
 if __name__ == '__main__':
-    weighted_interest_sum_projection()
+    weighted_interest_sum()
