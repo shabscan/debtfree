@@ -15,13 +15,13 @@ def index():
     return temp_message
 
 
-@app.route('/debts')
+@app.route('/debts', methods=['GET', 'POST'])
 @json
 def get_debts():
     return dict(firstname='John', lastname='Smith', loans=assets)
 
 
-@app.route('/history')
+@app.route('/history', methods=['GET', 'POST'])
 @json
 def get_historical_data():
     return dict(history=balance_history)
