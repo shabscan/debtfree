@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 from backend.Web.decorators import json
 from backend.Logic.model import weighted_interest_sum
 from backend.Logic.fakes import assets, balance_history, Balance
@@ -30,8 +30,20 @@ def get_historical_data():
 @app.route('/projection', methods=['POST'])
 @json
 def get_debt_projection():
+
+    # Get Post body if it exists
     average_weighted_rate, principal = weighted_interest_sum()
-    projection_data = walk_forward_projection(principal=principal, rate=average_weighted_rate, months=60)
+
+    # TODO Test this SHIT
+    # Fuck off prospector this is a fucking hackathon!
+    # noinspection PyBroadException
+    try:
+        payload = request.get_json()
+        payment = payload['payment']
+        projection_data = walk_forward_projection(principal=principal, rate=average_weighted_rate, payment=payment)
+    except:
+        projection_data = walk_forward_projection(principal=principal, rate=average_weighted_rate, months=60)
+
     balance_list = projection_data['balance'].as_matrix().tolist()
     balance_dictionaries = []
 
