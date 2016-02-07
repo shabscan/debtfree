@@ -108,7 +108,7 @@ width:100%;
 .swiper-container {
 	padding-top: 10px;
 	width: 100%;
-	height: 100%;
+	height: 100vh;
 	z-index: 1;
 }
 
@@ -126,10 +126,11 @@ width:100%;
 	top: 0;
 	left: -100%;
 	height: 100vh !important;
-	width: 20vw;
-	background: lightgrey;
+	width: 50vw;
+	background: #88D498;
 	z-index: 10 !important;
 	transition: left 0.8s;
+  max-width: 200px;
 }
 
 .nav-item {
@@ -149,11 +150,12 @@ width:100%;
 	padding-right: 1.3em;
 	margin-left: 0 !important;
 	display: block;
-	background: lightgrey;
+	background: #88D498;
 	text-align: center;
 	font-size: 1.3em;
 	width: 100%;
 	text-decoration: none !important;
+  color: #27476E;
 }
 
 .nav-link:hover{
@@ -169,7 +171,7 @@ width:100%;
 .hamburger-button {
 	width:30px;
     height:5px;
-    background-color:#111;
+    background-color:#27476E;
     border-radius:5px;
     position:relative;
 	display: block;
@@ -184,7 +186,7 @@ width:100%;
     content: '';
     width: 100%;
     height:5px;
-    background-color:#111;
+    background-color:#27476E;
     position:absolute;
     border-radius:5px;
 	z-index: 20 !important;
@@ -219,4 +221,12 @@ width:100%;
 .interest-graph {
 	text-align: right;
 	padding: 10px;
+}
+
+.mainDebtScreen{
+  width:100% !important;
+}
+
+.goalsettingCanvas{
+  width:100% !important;
 }

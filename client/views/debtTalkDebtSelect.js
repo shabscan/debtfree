@@ -41,7 +41,29 @@ Template.debtTalkSelectDebt.events({
 
 Template.debtTalkSetGoals.rendered = function () {
 	Session.set('target', 'conservative');
-	Session.set('currentTarget', 0);
+	Session.set('currentValue', 0);
+	Session.set('targetTime', 0);
+	Session.set('targetMonthlyPayment', 0);
+	Session.set('targetFinalPayment');
+	slider1 = noUiSlider.create(document.getElementById("slider1"), {
+	  connect: "lower",
+	  range: {
+	    min: 0,
+	    max: 30
+	  },
+	  start: 0,
+	  step:6
+	});
+	slider2 = noUiSlider.create(document.getElementById("slider2"), {
+	  connect: "lower",
+	  range: {
+	    min: 0,
+	    max: 2000
+	  },
+	  start: 0,
+	  step:1
+	});
+
 };
 
 Template.debtTalkSetGoals.helpers({
@@ -56,17 +78,47 @@ Template.debtTalkSetGoals.helpers({
 		}else{
 			value = 0;
 		}
-		return accounting.formatMoney(Session.get('currentTarget')*value);
+		Session.set('targetFinalPayment', Session.get('currentValue') - Session.get('currentValue')*value);
+		return accounting.formatMoney(Session.get('currentValue')*value);
+	},
+	month:function(){
+		return Session.get('targetTime');
+	},
+	amountMoney:function(){
+		return Session.get('targetMonthlyPayment');
 	}
 });
 
 
 Template.debtTalkSetGoals.events({
-
 	'click .btn':function(e){
 		Session.set('target', e.currentTarget.id);
 	},
 	'input #debtFrom':function(e){
-		Session.set('currentTarget', e.target.value);
+		Session.set('currentValue', e.target.value);
+	},
+	'click #slider1':function(e){
+		var monthlyPayment = Session.get('targetFinalPayment')/slider1.get();
+		slider2.set(monthlyPayment);
+		Session.set('targetMonthlyPayment', accounting.formatMoney(monthlyPayment));
+		Session.set('targetTime', slider1.get());
+	},
+	'click #slider2':function(e){
+		var paymentMonths = Session.get('targetFinalPayment')/slider2.get();
+		slider1.set(accounting.toFixed(paymentMonths, 0));
+		Session.set('targetTime', accounting.toFixed(paymentMonths, 0));
+		Session.set('targetMonthlyPayment', slider2.get());
+	},
+	'click #goalSettingContinue':function(){
+		var goalprofile = {
+			targetType: Session.get('target'),
+			startingAmount: Session.get('currentValue'),
+			duration: Session.get('targetTime'),
+			monthlyPayment: Session.get('targetMonthlyPayment'),
+			debtGoal: Session.get('targetFinalPayment')
+		}
+		Meteor.call('updateGoalProfile', goalprofile, Meteor.userId());
+
 	}
 });
+

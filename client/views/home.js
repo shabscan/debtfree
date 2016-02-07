@@ -9,3 +9,7 @@ Template.home.events({
     Session.set('myAppVariable', Math.floor(Math.random() * 11));
   }
 });
+
+Template.dashboard.rendered = function () {
+	Meteor.call('updateUserHistory', Meteor.userId());
+};
