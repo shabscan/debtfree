@@ -1,7 +1,9 @@
 <template name='dashboard'>
 	<script src="../lib/Chart.js"></script>
 
-	<a href='#' onclick="openNav()" class='hamburger-button'></a>
+	<a href='#' onclick="openNav()" style="z-index: 21 !important;">
+		<div class='hamburger-button'></div>
+	</a>
 <nav class='navigation-bar'>
 	<ul class='nav-list'>
 		<li class='nav-item'><a href='#' class='nav-link'>Impact Calculator</a></li>
@@ -31,76 +33,17 @@
 			pagination: '.swiper-pagination',
 			paginationClickable: true,
 			effect: 'flip' // default is 'slide'
-		})
+		});
+
+		function openNav() {
+			var navPos = document.getElementsByClassName('navigation-bar')[0];
+			if (navPos.style.left == "0px") {
+				navPos.style.left = "-100%";
+			} else {
+				navPos.style.left = "0px";
+			}
+		};
 	</script>
 
 </template>
 
-
-<template name='leftScreen'>
-<p class='swiper-content'>Here's the first screen.</p>
-</template>
-
-<template name='mainScreen'>
-	<canvas id='chart1' width='400' height='400'></canvas>
-	<script>
-		/* Assuming that data will reach this point in the following form, 
-		   more or less:
-
-		var loans = {
-					loan: { 
-							payments: [], 
-							dates: []
-						  }
-					};
-
-			That is, pre-parsed as x and y data.
-		 */
-		var data1 = {
-			labels: ["2015", "2016", "2017", "2018"],
-			datasets: [
-				{
-					label: "Student Loan",
-					fillColor: "rgba(220,220,220,0.2)",
-					strokeColor: "rgba(220, 220, 220,1)",
-					pointColor: "rgba(220, 220, 220, 1)",
-					pointStrokeColor: "#fff",
-					pointHighlightFill: "#fff",
-					pointHighlightStroke: "rgba(220, 220, 220, 1)",
-					data: [95, 89, 80, 59, 32, 12, 0]
-				},
-			]
-		}
-
-		var data2 = {
-			labels: ["January", "February", "March"],
-			datasets: [
-				{
-					label: "Student Loan",
-					fillColor: "rgba(220,220,220,0.2)",
-					strokeColor: "rgba(220, 220, 220,1)",
-					pointColor: "rgba(220, 220, 220, 1)",
-					pointStrokeColor: "#fff",
-					pointHighlightFill: "#fff",
-					pointHighlightStroke: "rgba(220, 220, 220, 1)",
-					data: [65, 59, 80, 81, 56, 55, 40]
-				},
-			]
-		}
-
-		var ctx = document.getElementById("chart1").getContext("2d");
-		var data = data1;
-		var firstChart = new Chart(ctx).Line(data);
-		window.setTimeout(function() {
-			firstChart.dataset[0].points[2].value = 10;
-			console.log("refreshed")
-			firstChart.update();
-		}, 1000);
-
-
-	</script>
-</template>
-
-<template name='rightScreen'>
-<p class='swiper-content'>Here's the third screen.</p>
-</template>

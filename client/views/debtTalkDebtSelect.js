@@ -37,3 +37,36 @@ Template.debtTalkSelectDebt.events({
 
 	}
 });
+
+
+Template.debtTalkSetGoals.rendered = function () {
+	Session.set('target', 'conservative');
+	Session.set('currentTarget', 0);
+};
+
+Template.debtTalkSetGoals.helpers({
+	target:function(){
+		value = 1;
+		if(Session.get('target') === 'conservative'){
+			value = 0.75;
+		}else if(Session.get('target') === 'moderate'){
+			value = 0.5;
+		}else if(Session.get('target') === 'aggressive'){
+			value = 0.25;
+		}else{
+			value = 0;
+		}
+		return accounting.formatMoney(Session.get('currentTarget')*value);
+	}
+});
+
+
+Template.debtTalkSetGoals.events({
+
+	'click .btn':function(e){
+		Session.set('target', e.currentTarget.id);
+	},
+	'input #debtFrom':function(e){
+		Session.set('currentTarget', e.target.value);
+	}
+});
