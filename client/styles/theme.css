@@ -248,6 +248,9 @@ select {
 
 .btn-date-selector{
   color:black;
+  border-color:black;
+  opacity: 0.7;
+
 }
 
 .btn-date-selector:hover{

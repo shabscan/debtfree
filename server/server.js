@@ -1,6 +1,6 @@
 Meteor.publish('userData', function () {
 return Meteor.users.find({_id: this.userId},
-{fields: {services: 1,debtprofile:1, goalprofile:1, userHistory:1 , interestValue:1}
+{fields: {services: 1,debtprofile:1, goalprofile:1, userHistory:1 , interestValue:1, reducedDays:1}
 });
 });
 
@@ -58,5 +58,22 @@ Meteor.methods({
 		}
 		Meteor.users.update({_id: userId}, {$set:{interestValue: profile}});
 
+	},
+	pullApiData:function(userId,lumpsum){
+		 var options = {
+        headers: {'Content-Type': 'application/json'},
+        data: {
+        	"payment":0, 
+        	"lumpsum": lumpsum
+        }
+      }
+
+      data = HTTP.call('POST', 'https://scotiadebt.herokuapp.com/impact', options);
+		pulled = data.data.impacts;
+		sum = 0;
+		for (var key in pulled){
+			sum+= pulled[key];
+		}
+		Meteor.users.update({_id: userId}, {$set: {reducedDays: sum}});
 	}
 });
