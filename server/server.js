@@ -35,5 +35,9 @@ Meteor.methods({
 	},
 	updateDebtProfile: function(debtprofile, userId){
 		Meteor.users.update({_id: userId}, {$set: {debtprofile: debtprofile}});
-}
+},
+	updateGoalProfile:function(goalprofile,userId){
+		Meteor.users.update({_id: userId}, {$set: {goalprofile: goalprofile}});
+
+	}
 });

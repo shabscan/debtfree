@@ -19,8 +19,14 @@
 	<!-- Structure required for Swiper.js -->
 	<div class='swiper-container'>
 		<div class='swiper-wrapper'>
-			<div id='first-screen' class='swiper-slide'>{{>leftScreen }}</div>
-			<div id='second-screen' class='swiper-slide'>{{>mainScreen }}</div>
+			<div id='first-screen' class='swiper-slide'>
+			<div class="col-xs-12">
+			{{>leftScreen }}</div>
+			</div>
+			<div id='second-screen' class='swiper-slide'>
+			<div class="col-xs-12">
+			{{>mainScreen }}</div>
+			</div>
 			<div id='third-screen' class='swiper-slide'>{{>rightScreen }}</div>
 		</div> <!-- class='swiper-wrapper' -->
 	<div class='swiper-pagination'></div>
