@@ -1,0 +1,75 @@
+<template name="impactCalculator">
+<div style="background-color:#9BCB65;height:100vh">
+	{{>navigation_bar}}
+<div class="container" style="text-align:center;color:white">
+<div class="row">
+<div class="col-xs-12" style="text-align:left">
+<h3 class="fancy" style="font-size:50px;text-align:center">Ask Manny!</h3>
+<p style="font-size:1.5em" class="wow bounceInDown">Hi {{currentUser.services.facebook.name}}, Talk to me!</p>
+</div>
+
+<div class="wow bounceInDown" data-wow-delay="1s" style="text-align:left">
+<div class="col-xs-12">
+
+
+
+</div>
+<div class="col-xs-4" style="padding-right:0px">
+<p style="font-size:1em;padding-top:5px">Hi Manny! I might</p>
+
+</div>
+
+<div class="col-xs-5" style="padding-left:0px">
+<select class="form-control formStyled" id="impactCalculatorAction">
+  <option value="goout">Go out tonight</option>
+  <option value="makebuy">Make a Purchase</option>
+</select>
+
+</div>
+<div class="col-xs-3" style="padding-top:5px;padding-left:0px">
+<p style="font-size:1em">And spend</p>
+
+</div>
+<div class="col-xs-3" style="padding-right:0px">
+<input type="number" style="background-color:transparent;border:0;width:100%;font-size:1.5em;border-bottom:solid 1px white" placeholder="$10" id="impactAmount">
+</div>
+<div class="col-xs-9" style="padding-left:0px">
+<p style="font-size:1em;padding-top:10px">Could you please tell me the impact?</p>
+</div>
+
+<div class="row">
+<div class="container">
+<div class="col-xs-12" style="margin-top:20px">
+<p style="font-size:1.5em" class="wow bounceInDown">Well, {{currentUser.services.facebook.name}}, a {{impactAmount}} dollar payment towards</p>
+</div>
+</div>
+</div>
+
+
+</div>
+</div>
+
+
+</div>
+</div>
+
+
+
+<!--
+<p style="font-size:1em;text-align:left">Hi Manny! I might</p>
+<select class="form-control formStyled" id="impactCalculatorAction">
+  <option value="goout">Go out</option>
+  <option value="makebuy">Make a Purchase</option>
+</select>
+
+<p style="font-size:1em;text-align:left">and Spend</p>
+<input type="number" style="background-color:transparent;border:0;width:100%;font-size:1.5em;border-bottom:solid 1px white" placeholder="$10">
+<button class="btn btn-styled" style="margin-top:20px">What does this mean?</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+!-->
+
+</template>

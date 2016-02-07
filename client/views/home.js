@@ -13,3 +13,5 @@ Template.home.events({
 Template.dashboard.rendered = function () {
 	Meteor.call('updateUserHistory', Meteor.userId());
 };
+
+Template.navigation_bar.rendered = new WOW().init()
