@@ -8,6 +8,31 @@ def project_debt_balance(values, interest_rates, payment=1200):
     pass
 
 
+def impact_calculator_total(pv, rate, payments, lumpsum, fv=0):
+    """
+    Calculate the impact (time) in throwing more money at a single debt
+    """
+
+    rate /= 12
+
+    t0 = np.nper(rate, payments, pv, fv)
+    t1 = np.nper(rate, payments, pv - lumpsum, fv)
+
+    time_saved = t1 - t0
+
+    # Output into units of time
+    if time_saved >= 12:
+        out_saved = time_saved / 12  # years
+    elif time_saved >= 1:
+        out_saved = time_saved  # months
+    elif time_saved >= 1 / 4:
+        out_saved = time_saved / 4  # weeks
+    else:
+        out_saved = time_saved / 28 # days
+
+    return format(out_saved, ',.1f')
+
+
 def walk_forward_projection(principal, rate, months=None, payment=1200):
     """
     :param payment:
@@ -29,8 +54,8 @@ def walk_forward_projection(principal, rate, months=None, payment=1200):
     time_step = 1
     balance = principal
 
-    while not(balance <= 0 or time_step > 100):
-        fraction_interest = balance*rate
+    while not (balance <= 0 or time_step > 100):
+        fraction_interest = balance * rate
 
         if balance > payment:
             balance = round(balance + fraction_interest - payment, 2)
@@ -44,6 +69,7 @@ def walk_forward_projection(principal, rate, months=None, payment=1200):
         time_step += 1
 
     return loan_table
+
 
 if __name__ == '__main__':
     amounts, rates = pull_loan_data()
